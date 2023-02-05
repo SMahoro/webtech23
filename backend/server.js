@@ -2,17 +2,19 @@ const express = require('express');
 const routes = require('./routes');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+mongoose.set('strictQuery', true);
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 app.use('/', routes);
 
-// connect to mongoDB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect(process.env.DB_CONNECTION, { dbName: process.env.DATABASE });
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', err => {
+  console.log(err);
+});
 db.once('open', () => {
     console.log('connected to DB');
 });

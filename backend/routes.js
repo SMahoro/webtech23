@@ -1,77 +1,73 @@
 const express = require('express');
 const router = express.Router();
-const Termin = require('./models/termine');
+const appointment = require('./models/appointment');
 
 
-// get all members
-router.get('/termine', async(req, res) => {
-    const allTermine = await Termin.find();
-    console.log(allTermine);
-    res.send(allTermine);
+// get all = READ alle
+router.get('/', async(req, res) => {
+    const allAppointments = await appointment.find();
+    res.send(allAppointments);
 });
 
-
-// post one member
-router.post('/termine', async(req, res) => {
-    const newTermin = new Member({
-        date: req.body.date,
+// post one = CREATE
+router.post('/', async(req, res) => {
+    const newAppointment = new appointment({
+        datum: req.body.datum,
         termin: req.body.termin,
     })
-    await newTermin.save();
-    res.send(newTermin);
+    await newAppointment.save();
+    res.send(newAppointment);
 });
-
-
-// post one member via id
-router.get('/members/:id', async(req, res) => {
+    
+// get one = READ
+router.get('/:id', async(req, res) => {
     try {
-        const termine = await Termin.findOne({ _id: req.params.id });
+        const oneAppointment = await appointment.findOne({ _id: req.params.id });
         console.log(req.params);
-        res.send(termine);
+        res.send(oneAppointment);
     } catch {
         res.status(404);
         res.send({
-            error: "Member does not exist!"
+            error: "Dieser Termin ist nicht vorhanden!"
         });
     }
 })
 
 
-// update one member
-router.patch('/members/:id', async(req, res) => {
+// update one member = UPDATE
+router.patch('/:id', async(req, res) => {
     try {
-        const member = await Termin.findOne({ _id: req.params.id })
+        const updateAppointment = await appointment.findOne({ _id: req.params.id })
 
-        if (req.body.date) {
-            member.date = req.body.date
+        if (req.body.datum) {
+            updateAppointment.datum = req.body.datum
         }
 
         if (req.body.termin) {
-            member.termin = req.body.termin
+            updateAppointment.termin = req.body.termin
         }
 
-
-        await Termin.updateOne({ _id: req.params.id }, termine);
-        res.send(termine)
+        await appointment.updateOne({ _id: req.params.id }, updateAppointment);
+        res.send(updateAppointment)
     } catch {
         res.status(404)
-        res.send({ error: "Termin does not exist!" })
+        res.send({ error: "Dieser Termin existiert nicht!" })
     }
 });
 
-
-// delete one member via id
-router.delete('/termine/:id', async(req, res) => {
+// delete one member via id DELETE
+router.delete('/:id', async(req, res) => {
     try {
-        await Termin.deleteOne({ _id: req.params.id })
+        await appointment.deleteOne({ _id: req.params.id })
         res.status(204).send()
     } catch {
         res.status(404)
-        res.send({ error: "Termin does not exist!" })
+        res.send({ error: "Dieser Termin existiert nicht!" })
     }
 });
 
 
-
-
 module.exports = router;
+
+
+
