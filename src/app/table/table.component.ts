@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BackendService } from '../shared/backend.service';
-import { Appointment } from '../shared/appointment';
+import { BackendService } from '../../../shared/backend.service';
+import { Appointment } from '../../../shared/appointment';
 
 @Component({
   selector: 'app-table',
