@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BackendService } from '../shared/backend.service';
-import { Appointment } from '../shared/member';
+import { Appointment } from '../shared/appointment';
 
 @Component({
   selector: 'app-table',
@@ -9,7 +10,10 @@ import { Appointment } from '../shared/member';
 })
 export class TableComponent implements OnInit {
   appointment!: Appointment[];
-  constructor(private bs: BackendService) { }
+  deleted = false;
+
+  constructor(private bs: BackendService, private router: Router) {  }
+
 
   ngOnInit(): void {
     this.readAll();
@@ -29,6 +33,29 @@ export class TableComponent implements OnInit {
   }
 
   delete(id: string): void {
-    console.log("id :" ,id );
+    this.bs.deleteOne(id).subscribe(
+      {
+        next: (response: any) => {
+          console.log('response : ', response);
+          if(response.status == 204){
+                  console.log(response.status);
+                  this.reload(true);
+                } else {
+                  console.log(response.status);
+                  console.log(response.error);
+                  this.reload(false);
+                }
+        },
+        error: (err) => console.log(err),
+        complete: () => console.log('deleteOne() completed')
+    });
   }
+
+  reload(deleted: boolean)
+  {
+    this.deleted = deleted;
+    this.readAll();
+    this.router.navigateByUrl('/table');
+  }
+
 }
