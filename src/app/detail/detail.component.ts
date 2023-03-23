@@ -2,8 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BackendService } from '../shared/backend.service';
-import { Appointment } from '../shared/appointment';
+import { BackendService } from '../../../shared/backend.service';
+import { Appointment } from '../../../shared/appointment';
 
 @Component({
   selector: 'app-detail',
