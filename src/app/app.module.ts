@@ -11,6 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetailComponent } from './detail/detail.component';
 import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import {httpInterceptorProviders} from "./Scripts/http.interceptor";
+import { AdminboardComponent } from './adminboard/adminboard.component';
+import { UserboardComponent } from './userboard/userboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     TableComponent,
     HomeComponent,
     DetailComponent,
-    CreateComponent
+    CreateComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminboardComponent,
+    UserboardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
