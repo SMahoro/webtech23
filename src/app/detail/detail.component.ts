@@ -14,8 +14,8 @@ export class DetailComponent  implements OnInit {
   id: string = '';
   appointment!: Appointment ;
   form = new FormGroup({
-        datum  : new FormControl<string>(''),
-        termin: new FormControl<string>(''),
+        datum  : new FormControl(''),
+        termin: new FormControl(''),
 
   });
 
