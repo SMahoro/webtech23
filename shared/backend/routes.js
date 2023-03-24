@@ -24,8 +24,8 @@ router.get('/:id', async(req, res) => {
     try {
         const oneAppointment = await appointment.findOne({ _id: req.params.id });
         console.log(req.params);
-        res.send(oneAppointment);
-    } catch {
+        res.send(member[0]);
+        } catch {
         res.status(404);
         res.send({
             error: "Dieser Termin ist nicht vorhanden!"
