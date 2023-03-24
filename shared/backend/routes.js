@@ -16,6 +16,7 @@ router.post('/', async(req, res) => {
         termin: req.body.termin,
     })
     await newAppointment.save();
+    res.status(404);
     res.send(newAppointment);
 });
     

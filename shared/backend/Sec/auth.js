@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const config = require('shared/backend/config/auth.config.js');
-const db = require ('shared/backend/models');
+const config = require('../config/auth.config');
+const db = require ('../models');
 const User = db.user;
 const Role = db.role;
 
@@ -45,7 +45,6 @@ isAdmin = (req, res, next) => {
         }
 
         res.status(403).send({message: "Require Admin Role!"});
-        return;
       }
     );
   });
@@ -58,4 +57,3 @@ const authJwt = {
 
 module.exports = authJwt;
 
-// might need to rename file to authJwt
