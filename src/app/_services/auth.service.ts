@@ -36,7 +36,7 @@ export class AuthService {
         email,
         password,
       },
-      httpOptions
+      {withCredentials: true}
     );
   }
 

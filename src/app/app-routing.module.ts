@@ -12,8 +12,11 @@ import {UserboardComponent} from "./userboard/userboard.component";
 
 
 const routes: Routes = [
-  { path: 'register', component: RegisterComponent},
-  { path: 'login', component: LoginComponent},
+  { path: 'register',
+   component: RegisterComponent},
+   
+  { path: 'login',
+   component: LoginComponent},
   {
     path: "home",
     component: HomeComponent,
@@ -25,11 +28,11 @@ const routes: Routes = [
   },
   {
     path: "appointment",
-    component: CreateComponent
+    component: DetailComponent
   },
   {
     path: "appointment/:id",
-    component: DetailComponent
+    component: CreateComponent
   },
   { path: 'profile', component: ProfileComponent},
   { path: 'admin', component: AdminboardComponent},
