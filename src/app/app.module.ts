@@ -17,6 +17,8 @@ import {httpInterceptorProviders} from "./Scripts/http.interceptor";
 import { AdminboardComponent } from './adminboard/adminboard.component';
 import { UserboardComponent } from './userboard/userboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import {MainComponent} from "./main/main.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
     DetailComponent,
     CreateComponent,
     LoginComponent,
+    MainComponent,
     RegisterComponent,
     AdminboardComponent,
     UserboardComponent,
@@ -38,7 +41,8 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
