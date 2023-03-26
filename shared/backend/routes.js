@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const appointment = require('./models/appointment');
@@ -18,7 +19,7 @@ router.post('/', async(req, res) => {
     await newAppointment.save();
     res.send(newAppointment);
 });
-    
+
 // get one = READ
 router.get('/:id', async(req, res) => {
     try {

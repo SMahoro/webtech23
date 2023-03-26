@@ -1,5 +1,5 @@
 const db = require("../models");
-const Roles = db.ROLES;
+const ROLES = db.ROLES;
 const User = db.user;
 
 // checks for duplicate username in db

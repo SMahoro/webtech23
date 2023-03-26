@@ -1,6 +1,9 @@
 const { authJwt, verifySignUp} = require("shared/backend/Sec");
 const controller = require("shared/backend/config/user.controller");
 
+//authorization for signin
+//GET public and protected resources(get the user)
+
 module.exports= function(app) {
   app.use(function (req, res, next) {
     res.header(

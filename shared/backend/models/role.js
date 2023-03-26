@@ -7,6 +7,6 @@ const Role = mongoose.model(
       name: String
     }
   )
-);
+);  // defining roles scheme
 
 module.exports = Role;

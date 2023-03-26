@@ -3,8 +3,8 @@ const db = require ("../models");
 const User = db.user;
 const Role = db.role;
 
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const {signup} = require("./auth.controller");
 
 // function to create new user in db
@@ -39,7 +39,7 @@ exports.signup = (req, res) => {
             return;
           }
 
-          res.send({ message: "User was registered successfully!"});
+          res.send({ message: "Benutzer wurde erfolgreich registriert!"});
         });
       }
       );
@@ -56,41 +56,42 @@ exports.signup = (req, res) => {
             return;
           }
 
-          res.send({ message: "User was registered successfully!"});
+          res.send({ message: "Benutzer wurde erfolgreich registriert!"});
         });
       });
     }
   });
 };
 
-// function to sign in
+// function to sign in => find username in db and compare passwords in db usying bcrypt if correct.
+
 exports.signin = (req, res) => {
   User.findOne({ // find if username of request exist in db
     username: req.body.username,
   })
-    .popstate("roles", "-_v")
+    .popstate("roles")
     .exec((err, user) => {
       if (err) {
         res.status(500).send({message: err});
         return;
       }
       if(!user) {
-        return res.status(500).send({message: "User Not found."});
+        return res.status(500).send({message: "Benutzer nicht gefunden.."});
       }
 
-      var passwordIsValid = bcrypt.compareSync(  // compare password with the one in db
+      const passwordIsValid = bcrypt.compareSync(  // compare password with the one in db
         req.body.password,
         user.password
       );
       if(!passwordIsValid) {
-        return res.status(401).send({message: "Invalid Password!"});
+        return res.status(401).send({message: "Ungültiges Passwort!"});
       }
 
-      var token = jwt.sign({ id: user.id}, config.secret, { // generate a token
+      const token = jwt.sign({ id: user.id}, config.secret, { // generate a token
         expiresIn: 86400 // 24hrs
       });
 
-      var authorities = [];
+      const authorities = [];
       for (let i = o; i< user.roles.length; i++) {
         authorities.push(("ROLE_" + user.roles[i].name.toUpperCase())); // return user info and access token
       }
@@ -111,7 +112,7 @@ exports.signin = (req, res) => {
 exports.signout = async (req, res) => {
   try {
     req.session = null;
-    return  res.status(200).send({ message: "You've been signed out!"});
+    return  res.status(200).send({ message: "Du wurdest abgemeldet!"});
   } catch (err) {
     this.next(err);
   }
