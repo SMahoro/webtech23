@@ -10,6 +10,10 @@ export class BackendService {
 
   constructor(private http: HttpClient) { }
 
+  addAppointment(appointment:Appointment): Observable<Appointment>{
+    return this.http.post<Appointment>(this.baseUrl + '/', appointment);
+  }
+
   getAll(): Observable<Appointment[]>{
     return this.http.get<Appointment[]>(this.baseUrl,{ withCredentials: true });
   }
@@ -19,7 +23,7 @@ export class BackendService {
   }
 
   update(id: string, data: Appointment): Observable<Appointment> {
-    return this.http.patch<Appointment>(this.baseUrl + '/' + id, data);
+    return this.http.patch<Appointment>(this.baseUrl + '/641e16aacdc17f495cb70578', data);
   }
 
   deleteOne(id: string): Observable<any>{

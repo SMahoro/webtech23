@@ -16,7 +16,6 @@ export class DetailComponent  implements OnInit {
   form = new FormGroup({
         datum  : new FormControl(''),
         termin: new FormControl(''),
-
   });
 
   constructor(
@@ -73,5 +72,7 @@ export class DetailComponent  implements OnInit {
   cancel(): void {
     this.location.back();
   }
+
+
 
 }
