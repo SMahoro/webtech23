@@ -19,6 +19,8 @@ import { UserboardComponent } from './userboard/userboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MainComponent} from "./main/main.component";
 import {FormsModule} from "@angular/forms";
+import { NavloginComponent } from './navlogin/navlogin.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {FormsModule} from "@angular/forms";
     RegisterComponent,
     AdminboardComponent,
     UserboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    NavloginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
