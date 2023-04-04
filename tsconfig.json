@@ -9,6 +9,7 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "strictPropertyInitialization": false,  // added this to resolvee signupForm no initializer or assigned constructor
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,

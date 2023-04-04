@@ -1,13 +1,13 @@
 const express = require('express');
 const routes = require('./routes');
-
 const mongoose = require('mongoose');
 require('dotenv').config();
-mongoose.set('strictQuery', true);
+
+//mongoose.set('strictQuery', true);
 const app = express();
 const PORT = 3000;
-const cors = require('cors');
-app.use(cors({ origin: 'http://localhost:4200', credentials: true}));
+
+
 
 app.use(express.json());
 app.use('/', routes);

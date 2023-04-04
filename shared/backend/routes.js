@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const appointment = require('./models/appointment');
+const userModel = require('./models/user');
+const bcrypt = require('bcryptjs');
 
 
 // get all = READ alle
@@ -68,6 +70,28 @@ router.delete('/:id', async(req, res) => {
     }
 });
 
+router.post('/signup', (req, res) => {
+
+  bcrypt.hash(req.body.password, 10)
+    .then(hash => {
+      const userModel = new userModel ({
+        username: req.body.username,
+        password: hash
+    })
+      userModel.save()
+        .then(result => {
+          res.status(201).json ({
+            message: 'user created',
+            result: result
+          })
+        })
+        .catch(err=> {
+          res.status(500).json({
+            error: err
+          })
+        })
+  })
+})
 
 module.exports = router;
 
