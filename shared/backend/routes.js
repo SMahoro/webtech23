@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
     res.send(newAppointment);
 });
     
-// get one = READ
+// get one = READ.
 router.get('/:id', async(req, res) => {
     try {
         const oneAppointment = await appointment.findOne({ _id: req.params.id });

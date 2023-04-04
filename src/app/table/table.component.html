@@ -2,19 +2,19 @@
   <h3 class="m-3">Alle Einträge</h3>
   <div class="table-responsive">
     <table class="m-3 table table-striped table-hover">
-      <caption>Alle <code>Termine</code></caption>
+      <caption>Alle <code>Termin</code></caption>
       <thead>
         <tr>
+          <th scope="col "></th>
           <th scope="col ">Datum</th>
           <th scope="col ">Termin</th>
-
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let appointment of appointment; let i=index; ">
+          <td>{{ i+1 }}</td>
           <td>{{ appointment.datum }}</td>
           <td>{{ appointment.termin }}</td>
-
         </tr>
       </tbody>
 
