@@ -18,7 +18,7 @@ module.exports= function(app) {
   });
 //signup routing
   app.post(
-    "/api/auth/signup",
+    "/signup",
     [
       verifySignUp.checkDuplicateUsernameOrEmail,
       verifySignUp.checkRolesExisted,

@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken");
-const config = require('shared/backend/config/auth.config.js');
+const config = require('../config/auth.config');
 const db = require ('../models');
 const User = db.user;
 const Role = db.role;
 
-// check if token is provided. Token is gotten from http session and we jsonwebtoken to verify function
 verifyToken = (req, res, next) => {
   let token = req.session.token;
 
@@ -20,7 +19,7 @@ verifyToken = (req, res, next) => {
     next();
   });
 };
-// check if roles of the user contains required role or not
+
 isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) =>{
     if (err) {
@@ -46,7 +45,6 @@ isAdmin = (req, res, next) => {
         }
 
         res.status(403).send({message: "Require Admin Role!"});
-        return;
       }
     );
   });
@@ -59,4 +57,3 @@ const authJwt = {
 
 module.exports = authJwt;
 
-// might need to rename file to authJwt

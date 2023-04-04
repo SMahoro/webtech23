@@ -11,7 +11,7 @@ export class BackendService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.baseUrl);
+    return this.http.get<Appointment[]>(this.baseUrl,{ withCredentials: true });
   }
 
   getOne(id: string): Observable<Appointment>{
