@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const appointment = require('./models/appointment');
@@ -8,26 +7,32 @@ const bcrypt = require('bcryptjs');
 
 // signup --> function to hash the password and save data in the database
 
-router.post('/signup', (req, res) => {
-  bcrypt.hash(req.body.password, 10)
-    .then(hash => {
-      const person = new user({
-        username: req.body.username,
-        password: hash
+router.post('/signup', async(req, res) => {
+  const existingUsername = await user.findOne({username: req.body.username}); // check if user exist
+  if(!existingUsername) {  // if user does not exist, create new user
+    bcrypt.hash(req.body.password, 10)
+      .then(hash => {
+        const person = new user({
+          username: req.body.username,
+          password: hash
+        })
+        person.save()
+          .then(result => {
+            res.status(201).json({
+              message: 'user created',
+              result: result
+            })
+          })
+          .catch(err => {
+            res.status(500).json({
+              message: 'user not created',
+              error: err
+            })
+          })
       })
-      person.save()
-        .then(result => {
-          res.status(201).json ({
-            message: 'user created',
-            result: result
-          })
-        })
-        .catch(err=> {
-          res.status(500).json({
-            error: err
-          })
-        })
-    })
+  } else {
+    res.status(400).json({error: 'username exist already'})
+  }
 })
 
 
