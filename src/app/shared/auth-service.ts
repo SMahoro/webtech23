@@ -12,3 +12,8 @@ export class AuthService{
       })
     }
 }
+
+// Login
+/*
+sign in user function. use post. url =.../signin -> and then .subscribe
+ */

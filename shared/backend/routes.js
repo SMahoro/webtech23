@@ -2,9 +2,41 @@
 const express = require('express');
 const router = express.Router();
 const appointment = require('./models/appointment');
-const userModel = require('./models/user');
+const user = require('./models/user');
 const bcrypt = require('bcryptjs');
 
+
+// signup --> function to hash the password and save data in the database
+
+router.post('/signup', (req, res) => {
+  bcrypt.hash(req.body.password, 10)
+    .then(hash => {
+      const person = new user({
+        username: req.body.username,
+        password: hash
+      })
+      person.save()
+        .then(result => {
+          res.status(201).json ({
+            message: 'user created',
+            result: result
+          })
+        })
+        .catch(err=> {
+          res.status(500).json({
+            error: err
+          })
+        })
+    })
+})
+
+
+
+// login page -> compare entered credentials with those stored in the database
+// check the username(method: use "getone" or "findone") if it exist. if yes, check the password
+//password : decrypt the password. use "async" and compare with end point.
+
+router.post
 
 // get all = READ alle
 router.get('/', async(req, res) => {
@@ -70,28 +102,9 @@ router.delete('/:id', async(req, res) => {
     }
 });
 
-router.post('/signup', (req, res) => {
 
-  bcrypt.hash(req.body.password, 10)
-    .then(hash => {
-      const userModel = new userModel ({
-        username: req.body.username,
-        password: hash
-    })
-      userModel.save()
-        .then(result => {
-          res.status(201).json ({
-            message: 'user created',
-            result: result
-          })
-        })
-        .catch(err=> {
-          res.status(500).json({
-            error: err
-          })
-        })
-  })
-})
+
+
 
 module.exports = router;
 

@@ -7,18 +7,19 @@
   <body>
   <img
     id="profile-img"
-    src="./image/calendar.png"
-    class="profile-img-card"/>
+    src="calendar.png"/>
         <div class="outer">
         <h1 id="title">Mein Kalendar</h1>
         <div class="inner">
           <form (ngSubmit)="onsubmit()" [formGroup]="loginForm">
             <div class="form-group">
-              <input id="username" class="form-control" type="text" formControlName="username" placeholder="Benutzername" name="username"/>
-              <input id="password" class="form-control" type="password" formControlName="password" placeholder="Passwort" name="password"/>
+              <input class="form-control" type="text" formControlName="username" placeholder="Benutzername" name="username"/>
+              <input class="form-control" type="password" formControlName="password" placeholder="Passwort" name="password"/>
               <button [disabled]="!loginForm.valid" id="loginbutton" class="button" type="submit" name="submitUser">Anmelden</button> <!--class="btn btn-success"-->
             </div>
           </form>
         </div>
       </div>
 </body>
+
+

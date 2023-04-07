@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   onsubmit(){
     console.log(this.loginForm)
 
+    //call the signin on submit. redirect to homepage. use function "Windows...." to be directed to the homepage.
 
 }
 }
