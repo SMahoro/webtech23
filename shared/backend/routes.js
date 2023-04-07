@@ -36,7 +36,21 @@ router.post('/signup', (req, res) => {
 // check the username(method: use "getone" or "findone") if it exist. if yes, check the password
 //password : decrypt the password. use "async" and compare with end point.
 
-router.post
+router.post('/login',  async (req, res) =>{
+  const existingUsername = await user.findOne( { username: req.body.username});
+  if(existingUsername){
+    bcrypt.compare(req.body.password, existingUsername.password).then((result) => {
+      if(result){
+        res.status(201).json({ message: 'logged in'});
+      } else {
+        res.status(204).send(); // incorrect password
+      }
+    })
+      .catch((err) => res.status(400).json({ error: 'Something went wrong'}))
+  } else {
+    res.status(400).json({ error: ' User does not exist'});
+  }
+} );
 
 // get all = READ alle
 router.get('/', async(req, res) => {

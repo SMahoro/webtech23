@@ -14,6 +14,11 @@ const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full'
   },
+
+  {path: "signup", component:SignupComponent},
+
+  {path: "login", component:LoginComponent},
+
   {
     path: "table",
     component: TableComponent
@@ -26,8 +31,7 @@ const routes: Routes = [
     path: "appointment/:id",
     component: CreateComponent
   },
-  {path: "login", component:LoginComponent},
-  {path: "signup", component:SignupComponent},
+
   {path: '', redirectTo: 'home', pathMatch: 'full'}];
 
 @NgModule({

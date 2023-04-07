@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {AuthModel} from "./auth-model";
+import {Observable} from "rxjs";
 
 @Injectable({providedIn: "root"})
 export class AuthService{
@@ -11,6 +12,16 @@ export class AuthService{
       console.log(res);
       })
     }
+
+  loginUser(username: String, password: String) //: Observable<any>
+  {
+    //return
+    this.http.post('http://localhost:3000/login',
+      {username:username, password:password}).subscribe(res =>{
+        console.log(res);
+    })
+      //{observe: 'response'})
+  }
 }
 
 // Login
