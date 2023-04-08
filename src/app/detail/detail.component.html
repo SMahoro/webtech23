@@ -1,34 +1,34 @@
 <main class="d-flex min-vh-100">
-    <fieldset class="container  mt-5">
-      <legend *ngIf="appointment" class="mb-4">Eintrag von {{ appointment.datum }} {{ appointment.termin }} aktualisieren
-      </legend>
-      <legend *ngIf="!appointment" class="mb-4">Eintrag aktualisieren</legend>
-      <form [formGroup]="form" (ngSubmit)="update()">
-        <div class="mb-3 row">
-          <label class="col-2 col-form-label" for="datum">Datum</label>
-          <div class="col-10">
-            <input type="text" class="form-control" id="datum" placeholder="Datum"
-            formControlName="datumControl" />
-          </div>
+  <fieldset class="container  mt-5">
+    <legend *ngIf="appointment" class="mb-4">Eintrag von {{ appointment.datum }} {{ appointment.termin }} aktualisieren
+    </legend>
+    <legend *ngIf="!appointment" class="mb-4">Eintrag aktualisieren</legend>
+    <form [formGroup]="form" (ngSubmit)="update()">
+
+      <div class="mb-3 row">
+        <label class="col-2 col-form-label" for="datum">Datum</label>
+        <div class="col-10">
+          <input type="date" value="Submit" class="form-control" id="datum" placeholder="Datum"
+          formControlName="datumControl" />
         </div>
-        <div class="mb-3 row">
-          <label class="col-2 col-form-label" for="termin">Termin</label>
-          <div class="col-10">
-            <input type="text" class="col-10 form-control" id="termin" placeholder="Termin"
-            formControlName="terminControl" />
-          </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-2 col-form-label" for="termin">Termin</label>
+        <div class="col-10">
+          <input type="text" class="col-10 form-control" id="termin" placeholder="Termin"
+          formControlName="terminControl" />
         </div>
-        <div class="row ">
-          <button type="submit" class="col-5 btn btn-secondary">Speichern</button>
-          <div class="col-2"></div>
-          <button type="button" class="col-5 btn btn-secondary" (click)="cancel() ">Abbrechen</button>
-        </div>
-                 <td>  
-            <button class="btn btn-danger"(click) = "update()" >Löschen </button>   
-          </td>
+      </div>
+
+      
+      <div class="row ">
+        <button type="submit" class="col-5 btn btn-secondary">Aktualisieren</button>
+        <div class="col-2"></div>
+        <button type="button" class="col-5 btn btn-secondary" (click)="cancel() ">Abbrechen</button>
+      </div>
 
 
-      </form>
-    </fieldset>
-  </main>
-  
+    </form>
+  </fieldset>
+</main>
