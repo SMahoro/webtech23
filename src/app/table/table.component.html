@@ -1,5 +1,6 @@
+<h3 class="m-3">Alle Einträge</h3>
+
 <div *ngIf="!deleted" class="container mt-3">
-  <h3 class="m-3">Alle Einträge</h3>
   <div class="table-responsive">
     <table class="m-3 table table-striped table-hover">
       <caption>Alle <code>Termin</code></caption>
@@ -15,6 +16,20 @@
           <td>{{ i+1 }}</td>
           <td>{{ appointment.datum }}</td>
           <td>{{ appointment.termin }}</td>
+          <td>  
+            <button class="btn btn-danger"(click) = "delete(appointment._id)" >Löschen </button>   
+          </td>
+
+            <td>
+
+          <div *ngIf="deleted" class=" container mt-3 ">
+            <h3>Datensatz wurde gelöscht!</h3>
+            <button type="button" class="btn btn-secondary" (click)="reload(false)">Zurück zur Tabelle</button>
+            
+          </div>
+        </td>
+
+
         </tr>
       </tbody>
 
@@ -24,4 +39,5 @@
 <div *ngIf="deleted" class=" container mt-3 ">
   <h3>Datensatz wurde gelöscht!</h3>
   <button type="button" class="btn btn-secondary" (click)="reload(false)">Zurück zur Tabelle</button>
+  
 </div>

@@ -23,7 +23,7 @@ export class BackendService {
   }
 
   update(id: string, data: Appointment): Observable<Appointment> {
-    return this.http.patch<Appointment>(this.baseUrl + '/641e16aacdc17f495cb70578', data);
+    return this.http.patch<Appointment>(this.baseUrl + '/' + id, data);
   }
 
   deleteOne(id: string): Observable<any>{
