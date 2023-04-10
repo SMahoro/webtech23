@@ -57,5 +57,4 @@ export class TableComponent implements OnInit {
     this.readAll();
     this.router.navigateByUrl('/table');
   }
-
 }
