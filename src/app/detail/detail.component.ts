@@ -67,7 +67,7 @@ export class DetailComponent  implements OnInit {
         complete: () => console.log('update() completed')
       }
       );
-    this.router.navigateByUrl('/appointment');
+    this.router.navigateByUrl('/table');
   }
 
   cancel(): void {
