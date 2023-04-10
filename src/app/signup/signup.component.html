@@ -1,7 +1,10 @@
+<!DOCTYPE html>
+<html>
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Title</title>
 </head>
   <body>
   <!--
@@ -12,12 +15,34 @@
   <h1 id="title">Mein Kalendar</h1>
   <div class="inner">
     <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+      <mat-card-content>
       <div class="form-group">
-        <input class="form-control" type="text" formControlName="username" placeholder="Benutzername" name="username"/>
-        <input class="form-control" type="password" formControlName="password" placeholder="Passwort" name="password"/>
-        <button [disabled]="!signupForm.valid" class="btn btn-success" type="submit" placeholder="Registrieren" >Anmelden</button>
+        <mat-form-field hintLabel="Einloggen mit Nutzername und Passwort" class="full-width">
+        <input matInput class="form-control" type="text" formControlName="username" placeholder="Benutzername" required />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="signupForm.controls['username'].hasError('required')">
+            Nutzername <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
       </div>
-    </form>
-  </div>
+        <div class="form-group">
+        <mat-form-field hintLabel="Mind. 8 Zeichen, mind. 1 Groß- und Kleinbuchstaben, Ziffer und Sonderzeichen" class="full-width">
+        <input matInput class="form-control" type="password" formControlName="password" placeholder="Passwort" name="password" required />
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
+            Password <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+        </div>
+          <div class="form-group">
+            <button [disabled]="!signupForm.valid" class="btn btn-success" type="submit">Registrieren</button>
+          </div>
+          </mat-card-content>
+        </form>
+      </div>
 </div>
 </body>
+</html>

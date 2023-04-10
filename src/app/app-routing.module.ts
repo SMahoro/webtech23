@@ -13,6 +13,7 @@ const routes: Routes = [
     path: "home",
     component: HomeComponent,
     pathMatch: 'full'
+
   },
 
   {path: "signup", component:SignupComponent},
