@@ -12,16 +12,18 @@ import {UserboardComponent} from "./userboard/userboard.component";
 
 
 const routes: Routes = [
-  { path: 'register',
-   component: RegisterComponent},
-   
-  { path: 'login',
-   component: LoginComponent},
+
   {
     path: "home",
     component: HomeComponent,
     pathMatch: 'full'
   },
+  { path: 'register',
+  component: RegisterComponent},
+  
+ { path: '',
+  component: LoginComponent
+ },
   {
     path: "table",
     component: TableComponent
