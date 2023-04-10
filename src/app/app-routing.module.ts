@@ -14,6 +14,12 @@ const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full'
   },
+  { path: 'register',
+  component: RegisterComponent},
+  
+ { path: '',
+  component: LoginComponent
+ },
   {
     path: "table",
     component: TableComponent

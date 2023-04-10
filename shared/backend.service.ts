@@ -10,6 +10,10 @@ export class BackendService {
 
   constructor(private http: HttpClient) { }
 
+  addAppointment(appointment:Appointment): Observable<Appointment>{
+    return this.http.post<Appointment>(this.baseUrl + '/', appointment);
+  }
+
   getAll(): Observable<Appointment[]>{
     return this.http.get<Appointment[]>(this.baseUrl,{ withCredentials: true });
   }

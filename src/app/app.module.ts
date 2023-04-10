@@ -13,6 +13,8 @@ import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MainComponent} from "./main/main.component";
 import {FormsModule} from "@angular/forms";
+import { NavloginComponent } from './navlogin/navlogin.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,19 @@ import {FormsModule} from "@angular/forms";
     HomeComponent,
     DetailComponent,
     CreateComponent,
+<<<<<<< HEAD
     MainComponent
 
+=======
+    LoginComponent,
+    MainComponent,
+    RegisterComponent,
+    AdminboardComponent,
+    UserboardComponent,
+    ProfileComponent,
+    NavloginComponent,
+    LogoutComponent
+>>>>>>> 6d3f09493ae9ac14b120f2ab9aef801afccc4324
   ],
   imports: [
     BrowserModule,

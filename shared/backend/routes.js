@@ -20,8 +20,13 @@ router.post('/', async(req, res) => {
     res.status(404);
     res.send(newAppointment);
 });
+<<<<<<< HEAD
 
 // get one = READ
+=======
+    
+// get one = READ.
+>>>>>>> 6d3f09493ae9ac14b120f2ab9aef801afccc4324
 router.get('/:id', async(req, res) => {
     try {
         const oneAppointment = await appointment.findOne({ _id: req.params.id });
@@ -67,6 +72,7 @@ router.delete('/:id', async(req, res) => {
         res.send({ error: "Dieser Termin existiert nicht!" })
     }
 });
+
 
 
 module.exports = router;

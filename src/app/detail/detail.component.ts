@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { BackendService } from '../../../shared/backend.service';
 import { Appointment } from '../../../shared/appointment';
 
@@ -16,7 +17,6 @@ export class DetailComponent  implements OnInit {
   form = new FormGroup({
         datum  : new FormControl(''),
         termin: new FormControl(''),
-
   });
 
   constructor(
@@ -71,7 +71,17 @@ export class DetailComponent  implements OnInit {
   }
 
   cancel(): void {
-    this.location.back();
+    this.router.navigateByUrl('/table');
   }
 
+
+
+
+
+
+
+
+
+
+  
 }
