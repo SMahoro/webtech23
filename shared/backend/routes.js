@@ -1,8 +1,60 @@
-
 const express = require('express');
 const router = express.Router();
 const appointment = require('./models/appointment');
+const user = require('./models/user');
+const bcrypt = require('bcryptjs');
 
+
+// signup --> function to hash the password and save data in the database
+
+router.post('/signup', async(req, res) => {
+  const existingUsername = await user.findOne({username: req.body.username}); // check if user exist
+  if(!existingUsername) {  // if user does not exist, create new user
+    bcrypt.hash(req.body.password, 10)
+      .then(hash => {
+        const person = new user({
+          username: req.body.username,
+          password: hash
+        })
+        person.save()
+          .then(result => {
+            res.status(201).json({
+              message: 'user created',
+              result: result
+            })
+          })
+          .catch(err => {
+            res.status(500).json({
+              message: 'user not created',
+              error: err
+            })
+          })
+      })
+  } else {
+    res.status(400).json({error: 'username exist already'})
+  }
+})
+
+
+// login page -> compare entered credentials with those stored in the database
+// check the username(method: use "getone" or "findone") if it exist. if yes, check the password
+//password : decrypt the password. use "async" and compare with end point.
+
+router.post('/login',  async (req, res) =>{
+  const existingUsername = await user.findOne( { username: req.body.username});
+  if(existingUsername){
+    bcrypt.compare(req.body.password, existingUsername.password).then((result) => {
+      if(result){
+        res.status(201).json({ message: 'logged in'});
+      } else {
+        res.status(204).send(); // incorrect password
+      }
+    })
+      .catch((err) => res.status(400).json({ error: 'Something went wrong'}))
+  } else {
+    res.status(400).json({ error: ' User does not exist'});
+  }
+} );
 
 // get all = READ alle
 router.get('/', async(req, res) => {
@@ -20,13 +72,8 @@ router.post('/', async(req, res) => {
     res.status(404);
     res.send(newAppointment);
 });
-<<<<<<< HEAD
 
 // get one = READ
-=======
-    
-// get one = READ.
->>>>>>> 6d3f09493ae9ac14b120f2ab9aef801afccc4324
 router.get('/:id', async(req, res) => {
     try {
         const oneAppointment = await appointment.findOne({ _id: req.params.id });
@@ -73,9 +120,4 @@ router.delete('/:id', async(req, res) => {
     }
 });
 
-
-
 module.exports = router;
-
-
-

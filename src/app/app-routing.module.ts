@@ -4,22 +4,21 @@ import { CreateComponent } from './create/create.component';
 import { DetailComponent } from './detail/detail.component';
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
-
+import {LoginComponent} from "./login/login.component";
+import {SignupComponent} from "./signup/signup.component";
 
 
 const routes: Routes = [
-
   {
     path: "home",
     component: HomeComponent,
     pathMatch: 'full'
   },
-  { path: 'register',
-  component: RegisterComponent},
-  
- { path: '',
-  component: LoginComponent
- },
+
+  {path: "signup", component:SignupComponent},
+
+  {path: "login", component:LoginComponent},
+
   {
     path: "table",
     component: TableComponent
@@ -32,6 +31,7 @@ const routes: Routes = [
     path: "appointment/:id",
     component: CreateComponent
   },
+
   {path: '', redirectTo: 'home', pathMatch: 'full'}];
 
 @NgModule({
