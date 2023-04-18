@@ -20,6 +20,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInput, MatInputModule} from "@angular/material/input";
 import { ConfirmComponent } from './signup/confirm/confirm.component';
 import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import {MatCardModule} from "@angular/material/card";
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatIconModule,
+    MatDialogModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

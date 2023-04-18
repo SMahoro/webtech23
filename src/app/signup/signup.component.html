@@ -1,48 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Title</title>
-</head>
-  <body>
-  <!--
-  <img
-    id="profile-img"
-    src="../../calendar.png"/> -->
-<div class="outer">
-  <h1 id="title">Mein Kalendar</h1>
-  <div class="inner">
-    <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
-      <mat-card-content>
-      <div class="form-group">
-        <mat-form-field hintLabel="Einloggen mit Nutzername und Passwort" class="full-width">
-        <input matInput class="form-control" type="text" formControlName="username" placeholder="Benutzername" required />
-          <mat-icon matSuffix>person</mat-icon>
-          <mat-error *ngIf="signupForm.controls['username'].hasError('required')">
-            Nutzername <strong>erforderlich</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
-        <div class="form-group">
-        <mat-form-field hintLabel="Mind. 8 Zeichen, mind. 1 Groß- und Kleinbuchstaben, Ziffer und Sonderzeichen" class="full-width">
-        <input matInput class="form-control" type="password" formControlName="password" placeholder="Passwort" name="password" required />
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                  [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
-            Password <strong>erforderlich</strong>
-          </mat-error>
-        </mat-form-field>
-        </div>
-          <div class="form-group">
-            <button [disabled]="!signupForm.valid" class="btn btn-success" type="submit">Registrieren</button>
+<form [formGroup]="signupForm" novalidate (ngSubmit)="onSubmit()" xmlns="http://www.w3.org/1999/html">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Registrierung</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field hintLabel="Einloggen mit Nutzername und Passwort" class="full-width">
+            <input matInput placeholder="Benutzername" formControlName="username" required>
+              <mat-icon matSuffix>person_add</mat-icon>
+              <mat-error *ngIf="signupForm.controls['username'].hasError('required')">
+                Benutzername <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
           </div>
-          </mat-card-content>
-        </form>
-      </div>
-</div>
-</body>
-</html>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field hintLabel="Mind. 8 Zeichen, mind. 1 Groß- und Kleinbuchstaben, Ziffer und Sonderzeichen" class="full-width">
+            <input matInput class="form-control" type="password" formControlName="password" placeholder="Passwort" name="password" required >
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
+                Password <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field hintLabel="Dasselbe Passwort wie oben" class="full-width">
+              <input matInput  [type]="hide2 ? 'password' : 'text'" placeholder="Passwort wiederholen" formControlName="password2">
+              <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="signupForm.controls['password2'].hasError('required')">
+                Wiederholung Passwort <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Registrieren</button>
+    </mat-card-actions>
+    </mat-card>
+
+</form>
