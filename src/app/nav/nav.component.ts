@@ -1,15 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
+import {AuthService} from "../shared/auth.service";
+import {User} from "../shared/user";
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent{
+  isLoggedIn = false;
+  username: string = '';
 
-  constructor() { }
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
-  ngOnInit(): void {
+  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private router: Router) {
+    this.auth.loggedInChange.subscribe( value => {
+      this.isLoggedIn = value
+      if(this.isLoggedIn) {
+        this.auth.userChange.subscribe( val => {
+          console.log('nav user', val)
+          this.username=val?.username;
+          console.log('nav username', this.username)
+        })
+
+      }
+    })
+  }
+  callLogin() {
+    this.router.navigate(['/login'])
+  }
+
+  callLogout() {
+    this.isLoggedIn = false;
+    this.auth.logout();
+    this.router.navigate(['/login'])
   }
 
 }

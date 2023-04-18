@@ -1,29 +1,18 @@
-<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="login.component.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Login</title>
-</head>
-  <body>
-  <!--
-  <img
-    id="profile-img"
-    src="calendar.png"/> -->
-        <div class="outer">
-        <h1 id="title">Mein Kalendar</h1>
-        <div class="inner">
-          <form (ngSubmit)="onsubmit()" [formGroup]="loginForm">
-            <div class="form-group">
-              <mat-form-field class="full-width">
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onsubmit()" >
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <mat-form-field class="full-width">
+
               <input matInput class="form-control" type="text" formControlName="username" placeholder="Benutzername"  required/>
                 <mat-icon matSuffix>person</mat-icon>
                 <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
                   Nutzername <strong>erforderlich</strong>
                 </mat-error>
               </mat-form-field>
-            </div>
-            <div class="col">
               <mat-form-field class="full-width" >
               <input matInput class="form-control" type="password" formControlName="password" placeholder="Passwort" required/>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
@@ -31,11 +20,14 @@
                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
               </mat-form-field>
-              <button [disabled]="!loginForm.valid" id="loginbutton" class="button" type="submit" name="submitUser">Anmelden</button> <!--class="btn btn-success"-->
-            </div>
-          </form>
-        </div>
-      </div>
-</body>
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
 
 

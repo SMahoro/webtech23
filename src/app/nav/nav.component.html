@@ -14,5 +14,15 @@
             </div>
         </div>
 
+      <button *ngIf="!isLoggedIn" mat-icon-button class="right" (click)="callLogin()">
+        <mat-icon>login</mat-icon>
+      </button>
+      <div *ngIf="isLoggedIn" class="right">
+        <span>{{username}} </span>
+        <button mat-icon-button (click)="callLogout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+
     </div>
   </nav>

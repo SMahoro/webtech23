@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col">
             <mat-form-field hintLabel="Dasselbe Passwort wie oben" class="full-width">
-              <input matInput  [type]="hide2 ? 'password' : 'text'" placeholder="Passwort wiederholen" formControlName="password2">
+              <input matInput  [type]="hide2 ? 'password' : 'text'" placeholder="Passwort wiederholen" formControlName="password2" required>
               <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>

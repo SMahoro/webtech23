@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import{AuthService} from '../shared/auth.service'
 import { MatDialog } from '@angular/material/dialog';
 import {User} from "../shared/user";
+import {AuthguardGuard} from "../shared/authguard.guard";
 
 export interface DialogData {
   headline: string;
@@ -39,11 +40,13 @@ export class SignupComponent{
     this.auth.signupUser(this.user).subscribe({
       next:(response) => {
         console.log('response', response)
+        this.user = response;
+        this.auth.login(this.user)
         this.openDialog({ headline: "Erfolg", info: "User " + response.username + " registriert!" });
       },
       error: (err) => {
         console.log('error', err.error.error)
-        this.openDialog({ headline: "Fehler", info: "username und/oder E-Mail existiert bereits" });
+        this.openDialog({ headline: "Fehler", info: "Bitte ein gultiges Username eingeben oder username existiert bereits" });
       },
       complete: () => console.log('Registrierung Erfolgreich!')
     });
