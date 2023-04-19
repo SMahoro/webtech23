@@ -3,7 +3,7 @@ import { Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 //import {response} from "express";
 import{AuthService} from '../shared/auth.service'
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import {User} from "../shared/user";
 import {AuthguardGuard} from "../shared/authguard.guard";
 
