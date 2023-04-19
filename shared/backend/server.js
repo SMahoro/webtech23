@@ -1,17 +1,23 @@
 const express = require('express');
 const routes = require('./routes');
-
 const mongoose = require('mongoose');
 require('dotenv').config();
-mongoose.set('strictQuery', true);
+const cors = require("cors");
+
+//mongoose.set('strictQuery', true);
 const app = express();
 const PORT = 3000;
-const cors = require('cors');
-app.use(cors({ origin: 'http://localhost:4200', credentials: true}));
+
+app.use(
+  cors({
+    origin: "*",
+  })
+)
+
 
 app.use(express.json());
 app.use('/', routes);
-
+//app.use('./backend/models/user');
 
 mongoose.connect(process.env.DB_CONNECTION, { dbName: process.env.DATABASE });
 const db = mongoose.connection;

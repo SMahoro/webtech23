@@ -11,16 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetailComponent } from './detail/detail.component';
 import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import {httpInterceptorProviders} from "./Scripts/http.interceptor";
-import { AdminboardComponent } from './adminboard/adminboard.component';
-import { UserboardComponent } from './userboard/userboard.component';
-import { ProfileComponent } from './profile/profile.component';
 import {MainComponent} from "./main/main.component";
 import {FormsModule} from "@angular/forms";
-import { NavloginComponent } from './navlogin/navlogin.component';
-import { LogoutComponent } from './logout/logout.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -31,14 +25,9 @@ import { LogoutComponent } from './logout/logout.component';
     HomeComponent,
     DetailComponent,
     CreateComponent,
-    LoginComponent,
     MainComponent,
-    RegisterComponent,
-    AdminboardComponent,
-    UserboardComponent,
-    ProfileComponent,
-    NavloginComponent,
-    LogoutComponent
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +37,6 @@ import { LogoutComponent } from './logout/logout.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

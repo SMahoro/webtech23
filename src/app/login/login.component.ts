@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../_services/auth.service";
-import {StorageService} from "../_services/storage.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../shared/auth-service";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,42 +9,26 @@ import {StorageService} from "../_services/storage.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any= {
-    username: null,
-    password: null
-  };
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage= '';
-  roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  loginForm: FormGroup;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    if(this.storageService.isLoggedIn()) {
-      this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
+    this.loginForm = new FormGroup({
+      'username': new FormControl('', [Validators.required]),
+      'password': new FormControl('', [Validators.required])
+    }
+    )
+  }
+  onsubmit() {
+    this.authService.loginUser(this.loginForm.value.username, this.loginForm.value.password)
+    {
+      this.router.navigate(['/home'])  // if login true -> redirect to homepage
     }
   }
 
-  onSubmit(): void{
-    const {username, password} = this.form;
-    this.authService.login(username, password).subscribe({
-      next: data => {
-        this.storageService.saveUser(data);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
-      },
-      error: err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    });
-  }
-  reloadPage(): void {
-    window.location.reload();
-  }
+
+    //call the signin on submit. redirect to homepage. use function "Windows...." to be directed to the homepage.
 
 }
