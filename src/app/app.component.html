@@ -1,15 +1,7 @@
 <app-nav></app-nav>
 <app-footer></app-footer>
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand"> Kalendar</a>
-    <ul class="navbar-nav mr-auto" routerLink="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home"> Home</a>
-      </li>
-    </ul>
-  </nav>
-
+  <app-calendar (dateSelected)="dateSelected($event)" (monthSelected)="monthSelected($event)"></app-calendar>
   <div class="container">
     <router-outlet></router-outlet>
   </div>

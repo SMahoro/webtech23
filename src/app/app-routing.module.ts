@@ -7,6 +7,7 @@ import { TableComponent } from './table/table.component';
 import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
 import {AuthguardGuard} from "./shared/authguard.guard";
+import {CalendarComponent} from "./calendar/calendar.component";
 
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: "table",
     component: TableComponent
+  },
+
+  {
+    path: "calendar",
+    component: CalendarComponent
   },
   {
     path: "appointment",

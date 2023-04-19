@@ -32,6 +32,8 @@ export class DetailComponent  implements OnInit {
 
   }
 
+
+
   readOne(id: string): void {
       this.bs.getOne(id).subscribe(
       {

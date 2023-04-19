@@ -12,6 +12,7 @@ import {User} from "../shared/user";
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent{
+  user!: User;
   isLoggedIn = false;
   username: string = '';
 
@@ -27,7 +28,7 @@ export class NavComponent{
       if(this.isLoggedIn) {
         this.auth.userChange.subscribe( val => {
           console.log('nav user', val)
-          this.username=val?.username;
+          //this.username=val?.username;
           console.log('nav username', this.username)
         })
 

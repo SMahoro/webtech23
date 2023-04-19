@@ -17,11 +17,15 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
-import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatInputModule} from "@angular/material/input";
 import { ConfirmComponent } from './signup/confirm/confirm.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
+import { CalendarComponent } from './calendar/calendar.component';
+import { CustomMaterialModule } from './custom-material/custom-material.module';
+
+
 
 
 
@@ -38,6 +42,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     LoginComponent,
     SignupComponent,
     ConfirmComponent,
+    CalendarComponent,
 
   ],
   imports: [
@@ -53,6 +58,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatCardModule,
     MatIconModule,
     MatDialogModule,
+    CustomMaterialModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
