@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../../../shared/backend.service';
 import { Appointment } from '../../../shared/appointment';
@@ -13,9 +13,9 @@ import { Appointment } from '../../../shared/appointment';
 export class DetailComponent  implements OnInit {
   id: string = '';
   appointment!: Appointment ;
-  form = new FormGroup({
-        datum  : new FormControl(''),
-        termin: new FormControl(''),
+  form = new UntypedFormGroup({
+        datum  : new UntypedFormControl(''),
+        termin: new UntypedFormControl(''),
 
   });
 

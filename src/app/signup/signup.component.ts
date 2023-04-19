@@ -1,6 +1,6 @@
 import {ConfirmComponent} from "./confirm/confirm.component";
 import { Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 //import {response} from "express";
 import{AuthService} from '../shared/auth.service'
 import { MatDialog } from '@angular/material/dialog';
@@ -18,10 +18,10 @@ export interface DialogData {
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent{
-  signupForm = new  FormGroup({
-    'username': new FormControl('', [Validators.required]),
-    'password': new FormControl('', [Validators.required, Validators.minLength(8)]),
-    password2: new FormControl('', [Validators.required, Validators.minLength(8)])
+  signupForm = new  UntypedFormGroup({
+    'username': new UntypedFormControl('', [Validators.required]),
+    'password': new UntypedFormControl('', [Validators.required, Validators.minLength(8)]),
+    password2: new UntypedFormControl('', [Validators.required, Validators.minLength(8)])
   });
 
   hide = true;

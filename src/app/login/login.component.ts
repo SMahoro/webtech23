@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, FormBuilder, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../shared/auth.service";
 import { Router} from "@angular/router";
 //import {response} from "express";
@@ -14,11 +14,11 @@ export class LoginComponent{
   hide = true;
 
   loginForm=this.fb.group({
-    username: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required])
+    username: new UntypedFormControl(null, [Validators.required]),
+    password: new UntypedFormControl(null, [Validators.required])
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router) { }
 
   onsubmit(): void {
     const values = this.loginForm.value;
