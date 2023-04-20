@@ -40,6 +40,14 @@ router.post('/signup', async(req, res) => {
 // check the username(method: use "getone" or "findone") if it exist. if yes, check the password
 //password : decrypt the password. use "async" and compare with end point.
 
+//get all users
+router.get('/', async (req, res) => {
+  const allUsers= await User.find();
+  console.log(allUsers);
+  res.send(allUsers);
+})
+
+//username and password login
 router.post('/login',  async (req, res) =>{
   const existingUsername = await user.findOne( { username: req.body.username});
   if(existingUsername){
@@ -55,6 +63,9 @@ router.post('/login',  async (req, res) =>{
     res.status(400).json({ error: ' User does not exist'});
   }
 } );
+
+
+
 
 // get all = READ alle
 router.get('/', async(req, res) => {

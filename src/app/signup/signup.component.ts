@@ -1,27 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import  {AuthService} from "../shared/auth-service";
+import {ConfirmComponent} from "./confirm/confirm.component";
+import { Component} from '@angular/core';
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+//import {response} from "express";
+import{AuthService} from '../shared/auth.service'
+
+import {User} from "../shared/user";
+import {AuthguardGuard} from "../shared/authguard.guard";
+import {MatDialog} from "@angular/material/dialog";
+
+export interface DialogData {
+  headline: string;
+  info: string;
+}
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent{
+  signupForm = new  UntypedFormGroup({
+    'username': new UntypedFormControl('', [Validators.required]),
+    'password': new UntypedFormControl('', [Validators.required, Validators.minLength(8)]),
+    password2: new UntypedFormControl('', [Validators.required, Validators.minLength(8)])
+  });
 
-  signupForm: FormGroup
+  hide = true;
+  hide2 = true;
+  user!: User;
 
-  constructor(private authService: AuthService) { }
+  constructor(private auth: AuthService, public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    this.signupForm = new  FormGroup({
-      'username': new FormControl('', [Validators.required]),
-      'password': new FormControl('', [Validators.required])
-    })
+  onSubmit(): void{
+    const values = this.signupForm.value;
+    this.user = {
+      username: values.username!,
+      password: values.password!,
+    };
+    console.log(this.user)
+    this.auth.signupUser(this.user).subscribe({
+      next:(response) => {
+        console.log('response', response)
+        this.user = response;
+        this.auth.login(this.user)
+        this.openDialog({ headline: "Erfolg", info: "User " + response.username + " registriert!" });
+      },
+      error: (err) => {
+        console.log('error', err.error.error)
+        this.openDialog({ headline: "Fehler", info: "Bitte ein gultiges Username eingeben oder username existiert bereits" });
+      },
+      complete: () => console.log('Registrierung Erfolgreich!')
+    });
   }
 
-  onSubmit(){
-    this.authService.signupUser(this.signupForm.value.username, this.signupForm.value.password);
+  openDialog(data: DialogData) {
+    this.dialog.open(ConfirmComponent, { data });
   }
-
 }

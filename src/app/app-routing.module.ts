@@ -6,14 +6,18 @@ import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
 import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
+import {AuthguardGuard} from "./shared/authguard.guard";
+import {CalendarComponent} from "./calendar/calendar.component";
 
 
 const routes: Routes = [
   {
-    path: "home",
+    path: "",
     component: HomeComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthguardGuard]
   },
+  { path: 'home',   redirectTo: ''},
 
   {path: "signup", component:SignupComponent},
 
@@ -22,6 +26,11 @@ const routes: Routes = [
   {
     path: "table",
     component: TableComponent
+  },
+
+  {
+    path: "calendar",
+    component: CalendarComponent
   },
   {
     path: "appointment",
@@ -32,7 +41,7 @@ const routes: Routes = [
     component: CreateComponent
   },
 
-  {path: '', redirectTo: 'home', pathMatch: 'full'}];
+  {path: '**', redirectTo: '/home'}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
