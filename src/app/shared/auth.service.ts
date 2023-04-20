@@ -25,11 +25,11 @@ export class AuthService{
     });
   }
 
-  /*
+
   getAllUsers(): Observable<User[]>{
     return this.http.get<User[]>('http://localhost:3000/users');
   }
-*/
+
   getOneUser(username: string): Observable<User>{
     return this.http.get<User>('http://localhost:3000/users/' + username);
   }
