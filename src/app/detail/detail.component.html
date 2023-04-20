@@ -1,14 +1,14 @@
-<main class="d-flex min-vh-100">
-    <fieldset class="container  mt-5">
-      <legend *ngIf="appointment" class="mb-4">Eintrag von {{ appointment.datum }} {{ appointment.termin }} aktualisieren
-      </legend>
-      <legend *ngIf="!appointment" class="mb-4">Termine Hinzufügen</legend>
-      <form [formGroup]="form" (ngSubmit)="update()">
+<form [formGroup]="detailForm" novalidate (ngSubmit)="onsubmit()" >
+  <mat-card class="shipping-card">
+    <mat-form-field class="full-width">
+      <mat-card-header>
+        <mat-card-title>Termine Hinzufügen</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
         <div class="mb-3 row">
           <label class="col-2 col-form-label" for="datum">Datum</label>
           <div class="col-10">
-            <input type="text" class="form-control" id="datum" placeholder="Datum"
-            formControlName="datumControl" />
+            <input type="date" class="form-control" id="datum" placeholder="Datum" >
           </div>
         </div>
         <div class="mb-3 row">
@@ -19,11 +19,12 @@
           </div>
         </div>
         <div class="row ">
-          <button type="submit" class="col-5 btn btn-secondary">Speichern</button>
-          <div class="col-2"></div>
-          <button type="button" class="col-5 btn btn-secondary" (click)="cancel() ">Abbrechen</button>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">Speichern</button>
+            <button mat-raised-button color="primary" type="submit">Abbrechen</button>
+          </mat-card-actions>
         </div>
-      </form>
-    </fieldset>
-  </main>
-
+      </mat-card-content>
+    </mat-form-field>
+  </mat-card>
+</form>

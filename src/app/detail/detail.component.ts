@@ -4,27 +4,27 @@ import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../../../shared/backend.service';
 import { Appointment } from '../../../shared/appointment';
+import {AuthService} from "../shared/auth.service";
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent  implements OnInit {
+export class DetailComponent {
   id: string = '';
-  appointment!: Appointment ;
-  form = new UntypedFormGroup({
-        datum  : new UntypedFormControl(''),
-        termin: new UntypedFormControl(''),
+  appointment!: Appointment;
+  detailForm = new UntypedFormGroup({
+    datum: new UntypedFormControl(''),
+    termin: new UntypedFormControl(''),
 
   });
 
   constructor(
-    private route: ActivatedRoute,
-    private bs: BackendService,
-    private location: Location,
-    private router: Router
-  ) { }
+  private auth: AuthService
+  ) {
+  }
+  /*
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') || '';
@@ -33,19 +33,18 @@ export class DetailComponent  implements OnInit {
   }
 
 
-
   readOne(id: string): void {
-      this.bs.getOne(id).subscribe(
+    this.bs.getOne(id).subscribe(
       {
         next: (response) => {
-                this.appointment = response;
-                console.log('appointment', this.appointment);
-                this.form.patchValue({
-                  datumControl: this.appointment?.datum,
-                  terminontrol: this.appointment?.termin,
+          this.appointment = response;
+          console.log('appointment', this.appointment);
+          this.form.patchValue({
+            datumControl: this.appointment?.datum,
+            terminontrol: this.appointment?.termin,
 
-                })
-                return this.appointment;
+          })
+          return this.appointment;
         },
         error: (err) => console.log(err),
         complete: () => console.log('getOne() completed')
@@ -59,21 +58,25 @@ export class DetailComponent  implements OnInit {
     this.appointment.termin = values.terminControl!;
     this.bs.update(this.id, this.appointment)
       .subscribe({
-        next: (response) => {
-          console.log(response);
-          console.log(response._id);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-        complete: () => console.log('update() completed')
-      }
+          next: (response) => {
+            console.log(response);
+            console.log(response._id);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+          complete: () => console.log('update() completed')
+        }
       );
     this.router.navigateByUrl('/table');
   }
 
   cancel(): void {
     this.location.back();
+  }
+*/
+  onsubmit() {
+
   }
 
 }

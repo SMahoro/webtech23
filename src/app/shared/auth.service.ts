@@ -2,12 +2,16 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
 import {User} from "./user";
+import {Appointment} from "./appointment";
+
 
 @Injectable
 ({providedIn: "root"})
 
 export class AuthService{
   user: User = {username: '', password: ''};
+  appointment: Appointment ={datum:'', termin: ''}
+
   userChange: Subject<User> = new Subject<User>();
   loggedIn = false;
   loggedInChange: Subject<boolean> = new Subject<boolean>();
@@ -38,6 +42,12 @@ export class AuthService{
   {
     return this.http.post('http://localhost:3000/login',
       {username:username, password:password}, {observe: 'response'});
+  }
+
+  addDate(datum: string, termin: string)
+
+  {
+    return this.http.post('http://localhost:3000/appointment', this.appointment);
   }
 
   isLoggedin(): boolean {
