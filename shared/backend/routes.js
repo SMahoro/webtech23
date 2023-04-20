@@ -36,7 +36,6 @@ router.post('/signup', async(req, res) => {
 })
 
 
-
 // login page -> compare entered credentials with those stored in the database
 // check the username(method: use "getone" or "findone") if it exist. if yes, check the password
 //password : decrypt the password. use "async" and compare with end point.
@@ -132,11 +131,4 @@ router.delete('/:id', async(req, res) => {
     }
 });
 
-
-
-
-
 module.exports = router;
-
-
-
