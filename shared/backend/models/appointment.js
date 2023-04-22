@@ -1,16 +1,8 @@
 const mongoose = require('mongoose');
-const {formatDate} = require("@angular/common");
 
 const schema = new mongoose.Schema({
-    datum: {
-        type:String,
-        required:true
-    },
-    termin: {
-        type:String,
-        required:true
-    }
-
+    datum: {type:String, required:true},
+    termin: {type:String, required:true}
 });
 
 module.exports = mongoose.model('Appointment', schema);
