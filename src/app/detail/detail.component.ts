@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import {AuthService} from "../shared/auth.service";
 import {Appointment} from "../shared/appointment";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-detail',
@@ -12,15 +13,13 @@ export class DetailComponent {
   id: string = '';
   appointment!: Appointment;
   detailForm = new UntypedFormGroup({
-    datum: new UntypedFormControl(''),
-    termin: new UntypedFormControl(''),
+    datum: new UntypedFormControl('', [Validators.required]),
+    termin: new UntypedFormControl('', [Validators.required]),
 
   });
 
   constructor(
-  private auth: AuthService
-  ) {
-  }
+  private auth: AuthService, private router: Router) {}
   onsubmit() {
     const values = this.detailForm.value;
     this.appointment= {
@@ -28,16 +27,18 @@ export class DetailComponent {
       termin: values.termin!,
     };
     console.log(this.appointment)
-    this.auth.signupUser(this.appointment).subscribe({
+    this.auth.addDate(this.appointment).subscribe({
       next:(response) => {
         console.log('response', response)
         this.appointment = response;
+        this.router.navigate(['/table'])
       },
-      error: (err) => {
-        console.log('error', err.error.error)
+      //error: (err) => {
+        //console.log('error', err.error.error)
 
-      },
+     // },
       complete: () => console.log('Hinzüfugen Erfolgreich!')
     });
+
   }
 }

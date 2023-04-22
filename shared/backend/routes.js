@@ -58,7 +58,7 @@ router.post('/login',  async (req, res) =>{
         res.status(204).send(); // incorrect password
       }
     })
-      .catch((err) => res.status(400).json({ error: 'Something went wrong'}))
+      //.catch((err) => res.status(400).json({ error: 'Something went wrong'}))
   } else {
     res.status(400).json({ error: ' User does not exist'});
   }
@@ -67,11 +67,11 @@ router.post('/login',  async (req, res) =>{
 
 // post one = CREATE appointment
 router.post('/appointment', async(req, res) => {
-  const newAppointment = new appointment({
+  const newAppointment = await new appointment({
     datum: req.body.datum,
     termin: req.body.termin,
   })
-  await newAppointment.save();
+  newAppointment.save();
   res.status(404);
   res.send(newAppointment);
 });

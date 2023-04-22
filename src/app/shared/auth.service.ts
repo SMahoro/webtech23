@@ -10,7 +10,7 @@ import {Appointment} from "./appointment";
 
 export class AuthService{
   user: User = {username: '', password: ''};
-  appointment: Appointment ={datum:'', termin: ''}
+  appointment: Appointment = {datum:'', termin: ''};
 
   userChange: Subject<User> = new Subject<User>();
   loggedIn = false;
@@ -44,10 +44,9 @@ export class AuthService{
       {username:username, password:password}, {observe: 'response'});
   }
 
-  addDate(datum: string, termin: string)
-
+  addDate(appointment:Appointment): Observable<any>
   {
-    return this.http.post('http://localhost:3000/appointment', this.appointment);
+    return this.http.post('http://localhost:3000/appointment', appointment);
   }
 
   isLoggedin(): boolean {

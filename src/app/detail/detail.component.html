@@ -6,15 +6,18 @@
         <mat-card-title>Termine Hinzufügen</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-          <div class="mb-3 row">
-          <label class="col-2 col-form-label" for="termin">Termin</label>
-          <div class="col-10">
-            <input type="text" class="col-10 form-control" id="termin" placeholder="Termin"
-            formControlName="termin" />
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Termin" formControlName="termin" required>
+              <mat-error *ngIf="detailForm.controls['termin'].hasError('required')">
+               Termin <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
           </div>
         </div>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Datum auswählen" formControlName="datum">
+          <input matInput [matDatepicker]="picker"  placeholder="Datum auswählen" formControlName="datum">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
