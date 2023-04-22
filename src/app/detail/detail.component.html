@@ -6,19 +6,18 @@
         <mat-card-title>Termine Hinzufügen</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div class="mb-3 row">
-          <label class="col-2 col-form-label" for="datum">Datum</label>
-          <div class="col-10">
-            <input type="date" class="form-control" id="datum" placeholder="Datum" >
-          </div>
-        </div>
-        <div class="mb-3 row">
+          <div class="mb-3 row">
           <label class="col-2 col-form-label" for="termin">Termin</label>
           <div class="col-10">
             <input type="text" class="col-10 form-control" id="termin" placeholder="Termin"
-            formControlName="terminControl" />
+            formControlName="termin" />
           </div>
         </div>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Datum auswählen" formControlName="datum">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
         <div class="row ">
           <mat-card-actions>
             <button mat-raised-button color="primary" type="submit">Speichern</button>

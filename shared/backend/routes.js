@@ -65,6 +65,16 @@ router.post('/login',  async (req, res) =>{
 } );
 
 
+// post one = CREATE appointment
+router.post('/appointment', async(req, res) => {
+  const newAppointment = new appointment({
+    datum: req.body.datum,
+    termin: req.body.termin,
+  })
+  await newAppointment.save();
+  res.status(404);
+  res.send(newAppointment);
+});
 
 
 // get all = READ alle
@@ -73,16 +83,6 @@ router.get('/', async(req, res) => {
     res.send(allAppointments);
 });
 
-// post one = CREATE
-router.post('/', async(req, res) => {
-    const newAppointment = new appointment({
-        datum: req.body.datum,
-        termin: req.body.termin,
-    })
-    await newAppointment.save();
-    res.status(404);
-    res.send(newAppointment);
-});
 
 // get one = READ
 router.get('/:id', async(req, res) => {

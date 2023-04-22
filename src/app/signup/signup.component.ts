@@ -37,10 +37,10 @@ export class SignupComponent{
       username: values.username!,
       password: values.password!,
     };
-    console.log(this.user)
+    //console.log(this.user)
     this.auth.signupUser(this.user).subscribe({
       next:(response) => {
-        console.log('response', response)
+       console.log('response', response)
         this.user = response;
         this.auth.login(this.user)
         this.openDialog({ headline: "Erfolg", info: "User " + response.username + " registriert!" });

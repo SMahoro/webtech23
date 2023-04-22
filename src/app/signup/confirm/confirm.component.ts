@@ -1,6 +1,7 @@
 import { Component, Inject} from '@angular/core';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA} from '@angular/material/legacy-dialog';
 import {DialogData} from "../signup.component";
+import {MatDialog, MAT_DIALOG_DATA} from "@angular/material/dialog";
+
 
 @Component({
   selector: 'app-confirm',
