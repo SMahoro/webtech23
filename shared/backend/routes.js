@@ -42,7 +42,7 @@ router.post('/signup', async(req, res) => {
 
 //get all users
 router.get('/', async (req, res) => {
-  const allUsers= await User.find();
+  const allUsers= await user.find();
   console.log(allUsers);
   res.send(allUsers);
 })
@@ -67,21 +67,23 @@ router.post('/login',  async (req, res) =>{
 
 // post one = CREATE appointment
 router.post('/appointment', async(req, res) => {
-  const newAppointment = await new appointment({
+  const newAppointment = new appointment({
     datum: req.body.datum,
     termin: req.body.termin,
   })
-  newAppointment.save();
-  res.status(404);
+  await newAppointment.save();
+  //res.status(404);
   res.send(newAppointment);
 });
 
 
 // get all = READ alle
-router.get('/', async(req, res) => {
+router.get('/table', async(req, res) => {
     const allAppointments = await appointment.find();
+  console.log(allAppointments);
     res.send(allAppointments);
 });
+
 
 
 // get one = READ

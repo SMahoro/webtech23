@@ -27,10 +27,11 @@ export class DetailComponent {
       termin: values.termin!,
     };
     console.log(this.appointment)
-    this.auth.addDate(this.appointment).subscribe({
+    this.auth. addAppointment(this.appointment).subscribe({
       next:(response) => {
         console.log('response', response)
         this.appointment = response;
+        this.auth. addAppointment(this.appointment)
         this.router.navigate(['/table'])
       },
       //error: (err) => {

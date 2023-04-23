@@ -44,7 +44,7 @@ export class AuthService{
       {username:username, password:password}, {observe: 'response'});
   }
 
-  addDate(appointment:Appointment): Observable<any>
+  addAppointment(appointment:Appointment): Observable<any>
   {
     return this.http.post('http://localhost:3000/appointment', appointment);
   }
@@ -71,8 +71,30 @@ export class AuthService{
   getUser(): User | null {
     return this.user;
   }
+/*
+  addAppointment(appointment:Appointment): Observable<Appointment>{
+    return this.http.post<Appointment>('http://localhost:3000/appointment', appointment);
+  }
+*/
+  getAll(): Observable<Appointment[]>{
+    return this.http.get<Appointment[]>('http://localhost:3000/table',{ withCredentials: true });
+  }
+
+  getOne(id: string): Observable<Appointment>{
+    return this.http.get<Appointment>('http://localhost:3000/' + id);
+  }
+
+  update(id: string, data: Appointment): Observable<Appointment> {
+    return this.http.patch<Appointment>('http://localhost:3000/'+ id, data);
+  }
+
+  deleteOne(id: string): Observable<any>{
+    return this.http.delete<any>('http://localhost:3000/' + id, {observe: 'response'});
+  }
 
 }
+
+
 
 // Login
 /*

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BackendService } from '../../../shared/backend.service';
-import { Appointment } from '../../../shared/appointment';
+import {Appointment} from "../shared/appointment";
+import {AuthService} from "../shared/auth.service";
 
 @Component({
   selector: 'app-table',
@@ -12,7 +12,7 @@ export class TableComponent implements OnInit {
   appointment!: Appointment[];
   deleted = false;
 
-  constructor(private bs: BackendService, private router: Router) {  }
+  constructor( private router: Router, private auth: AuthService) {  }
 
 
   ngOnInit(): void {
@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   }
 
   readAll(): void {
-    this.bs.getAll().subscribe(
+    this.auth.getAll().subscribe(
       {
         next: (response) => {
               this.appointment = response;
@@ -33,7 +33,7 @@ export class TableComponent implements OnInit {
   }
 
   delete(id: string): void {
-    this.bs.deleteOne(id).subscribe(
+    this.auth.deleteOne(id).subscribe(
       {
         next: (response: any) => {
           console.log('response : ', response);
