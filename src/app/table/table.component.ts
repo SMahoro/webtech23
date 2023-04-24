@@ -12,26 +12,26 @@ export class TableComponent implements OnInit {
   appointment!: Appointment[];
   deleted = false;
 
-  constructor( private router: Router, private auth: AuthService) {  }
+  displayedColumns = ['termin', 'datum'];
 
-
-  ngOnInit(): void {
-    this.readAll();
+  // constructor( private router: Router, private auth: AuthService) {  }
+  constructor(private auth: AuthService) {
   }
 
-  readAll(): void {
-    this.auth.getAll().subscribe(
+  ngOnInit(): void {
+    this.auth.getAllAppointment().subscribe(
       {
         next: (response) => {
-              this.appointment = response;
-              console.log(this.appointment);
-              return this.appointment;
-            },
+          this.appointment = response;
+          console.log('this.appointment', this.appointment);
+          //return this.appointment;
+        },
         error: (err) => console.log(err),
         complete: () => console.log('getAll() completed')
       })
   }
-
+}
+  /*
   delete(id: string): void {
     this.auth.deleteOne(id).subscribe(
       {
@@ -58,3 +58,5 @@ export class TableComponent implements OnInit {
     this.router.navigateByUrl('/table');
   }
 }
+
+   */

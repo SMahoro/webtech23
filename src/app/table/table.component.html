@@ -1,3 +1,33 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" [dataSource]="appointment" aria-label="Elements">
+    <!-- termin Column -->
+    <ng-container matColumnDef="termin">
+      <th mat-header-cell *matHeaderCellDef>Termin</th>
+      <td mat-cell *matCellDef="let appointment">{{appointment.termin}}</td>
+    </ng-container>
+
+    <!-- email Column -->
+    <ng-container matColumnDef="datum">
+      <th mat-header-cell *matHeaderCellDef>Datum</th>
+      <td mat-cell *matCellDef="let appointment">{{appointment.datum}}</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let appointment; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+                 [length]="appointment.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 aria-label="Select page">
+  </mat-paginator>
+</div>
+
+<!--
+
 <h3 class="m-3">Alle Einträge</h3>
 
 <div *ngIf="!deleted" class="container mt-3">
@@ -6,17 +36,19 @@
       <caption>Alle <code>Termin</code></caption>
       <thead>
         <tr>
-          <th scope="col "></th>
+          <th scope="col ">ID</th>
           <th scope="col ">Datum</th>
           <th scope="col ">Termin</th>
         </tr>
       </thead>
       <tbody>
-      <!--
-        <tr *ngFor="let appointment of appointment; let i=index; ">
-          <td>{{ i+1 }}</td>
-          <td>{{ appointment.datum}}</td>
-          <td>{{ appointment.termin}}</td>
+
+      <tr *ngFor="let appointment of appointment; let i=index;">
+
+          <td>{{  }}</td>
+            <td>{{ appointment.datum}}</td>
+          <td>{{ appointment.termin}}</td> -->
+          <!--
           <td>
             <button class="btn btn-danger"(click) = "delete(appointment._id)" >Löschen </button>
           </td>
@@ -28,9 +60,9 @@
 
           </div>
         </td>
+
         </tr>
       </tbody>
-      -->
     </table>
   </div>
-</div>
+-->

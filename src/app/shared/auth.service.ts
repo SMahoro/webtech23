@@ -76,8 +76,9 @@ export class AuthService{
     return this.http.post<Appointment>('http://localhost:3000/appointment', appointment);
   }
 */
-  getAll(): Observable<Appointment[]>{
-    return this.http.get<Appointment[]>('http://localhost:3000/table',{ withCredentials: true });
+  getAllAppointment(): Observable<Appointment[]>{
+    return this.http.get<Appointment[]>('http://localhost:3000/table');
+    //return this.http.get<Appointment[]>('http://localhost:3000/table',{ withCredentials: true });
   }
 
   getOne(id: string): Observable<Appointment>{
