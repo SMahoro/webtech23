@@ -77,12 +77,24 @@ router.post('/appointment', async(req, res) => {
 });
 
 
-// get all = READ alle
+// get all appointments = READ alle
 router.get('/table', async(req, res) => {
     const allAppointments = await appointment.find();
   console.log(allAppointments);
     res.send(allAppointments);
 });
+
+// delete one appointment via id DELETE
+router.delete('/:id', async(req, res) => {
+  try {
+    await appointment.deleteOne({ _id: req.params.id })
+    res.status(204).send()
+  } catch {
+    res.status(404)
+    res.send({ error: "Dieser Termin existiert nicht!" })
+  }
+});
+
 
 
 
@@ -116,17 +128,6 @@ router.patch('/:id', async(req, res) => {
 
         await appointment.updateOne({ _id: req.params.id }, updateAppointment);
         res.send(updateAppointment)
-    } catch {
-        res.status(404)
-        res.send({ error: "Dieser Termin existiert nicht!" })
-    }
-});
-
-// delete one member via id DELETE
-router.delete('/:id', async(req, res) => {
-    try {
-        await appointment.deleteOne({ _id: req.params.id })
-        res.status(204).send()
     } catch {
         res.status(404)
         res.send({ error: "Dieser Termin existiert nicht!" })

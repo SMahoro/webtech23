@@ -19,10 +19,11 @@ export class DetailComponent {
   });
 
   constructor(
-  private auth: AuthService, private router: Router) {}
+    private auth: AuthService, private router: Router) {}
   onsubmit() {
     const values = this.detailForm.value;
     this.appointment= {
+      _id: values._id!,
       datum: values.datum!,
       termin: values.termin!,
     };
@@ -35,9 +36,9 @@ export class DetailComponent {
         this.router.navigate(['/table'])
       },
       //error: (err) => {
-        //console.log('error', err.error.error)
+      //console.log('error', err.error.error)
 
-     // },
+      // },
       complete: () => console.log('Hinzüfugen Erfolgreich!')
     });
 

@@ -1,12 +1,73 @@
 <div class="mat-elevation-z8">
-  <table mat-table class="full-width-table" [dataSource]="appointment" aria-label="Elements">
-    <!-- termin Column -->
+  <h3 class="m-3">Alle Einträge</h3>
+
+  <div *ngIf="!deleted" class="container mt-3">
+    <div class="table-responsive">
+      <table class="m-3 table table-striped table-hover">
+        <caption>Alle <code>Termin</code></caption>
+        <thead>
+        <tr>
+          <th scope="col ">ID</th>
+          <th scope="col ">Datum</th>
+          <th scope="col ">Termin</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let appointment of appointment; let i=index;">
+
+          <td>{{i+1}}</td>
+          <td>{{ appointment.datum}}</td>
+          <td>{{ appointment.termin}}</td>
+          <td>
+            <!--<a [href]="'mailto:' + appointment.username"><span class="bi bi-envelope px-5"></span></a> -->
+            <a [routerLink]="['/table', appointment._id]"> <span class=" bi bi-pencil-square px-5 "></span></a>
+            <button class="btn btn-danger"(click) = "deleteOne(appointment._id)" class=" bi bi-trash px-5 " > </button>
+          </td>
+          <td>
+            <div *ngIf="deleted" class=" container mt-3 ">
+              <h3>Datensatz wurde gelöscht!</h3>
+              <button type="button" class="btn btn-secondary" (click)="reload(false)">Zurück zur Tabelle</button>
+
+            </div>
+          </td>
+
+         <!--
+         <span (click)="deleteOne(appointment._id)" class=" bi bi-trash px-5 "></span>
+          <td>
+
+            <button class="btn btn-danger"(click) = "delete(appointment._id)" >Löschen </button>
+          </td>
+
+            <td>
+          <div *ngIf="deleted" class=" container mt-3 ">
+            <h3>Datensatz wurde gelöscht!</h3>
+            <button type="button" class="btn btn-secondary" (click)="reload(false)">Zurück zur Tabelle</button>
+
+          </div>
+        </td>
+          -->
+
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+      <!--
+
+<table mat-table class="full-width-table" [dataSource]="appointment" aria-label="Elements">
+
+termin Column --> <!--
     <ng-container matColumnDef="termin">
       <th mat-header-cell *matHeaderCellDef>Termin</th>
       <td mat-cell *matCellDef="let appointment">{{appointment.termin}}</td>
     </ng-container>
+-->
 
-    <!-- email Column -->
+    <!-- Datum Column -->
+  <!--
     <ng-container matColumnDef="datum">
       <th mat-header-cell *matHeaderCellDef>Datum</th>
       <td mat-cell *matCellDef="let appointment">{{appointment.datum}}</td>
@@ -14,9 +75,26 @@
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let appointment; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let appointment; columns: displayedColumns;"></tr> -->
+<!--
+ <ng-container matColumnDef="Delete">
+     <th mat-header-cell *matHeaderCellDef mat-sort-header>test</th>
+     <td mat-cell *matCellDef="let i = index">
+       <mat-icon (click)="removeCart(i)" class="removeCart" > close</mat-icon>
+     </td>
+   </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <div class="example-element-description">
+   <button mat-raised-button color="warn" (click)="delete(appointment._id)"> Delete</button>
+     </div>
+    -->
+
+<!--
   </table>
 
+  -->
+<!--
   <mat-paginator #paginator
                  [length]="appointment.length"
                  [pageIndex]="0"
@@ -26,7 +104,7 @@
   </mat-paginator>
 </div>
 
-<!--
+
 
 <h3 class="m-3">Alle Einträge</h3>
 

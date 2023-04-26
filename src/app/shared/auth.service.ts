@@ -10,7 +10,7 @@ import {Appointment} from "./appointment";
 
 export class AuthService{
   user: User = {username: '', password: ''};
-  appointment: Appointment = {datum:'', termin: ''};
+  //appointment: Appointment = { datum:'', termin: ''};
 
   userChange: Subject<User> = new Subject<User>();
   loggedIn = false;
@@ -81,17 +81,19 @@ export class AuthService{
     //return this.http.get<Appointment[]>('http://localhost:3000/table',{ withCredentials: true });
   }
 
+  deleteOne(id: string): Observable<any>{
+    return this.http.delete<any>('http://localhost:3000/table' + id, {observe: 'response'});
+  }
+
   getOne(id: string): Observable<Appointment>{
-    return this.http.get<Appointment>('http://localhost:3000/' + id);
+    return this.http.get<Appointment>('http://localhost:3000/table' + id);
   }
 
   update(id: string, data: Appointment): Observable<Appointment> {
-    return this.http.patch<Appointment>('http://localhost:3000/'+ id, data);
+    return this.http.patch<Appointment>('http://localhost:3000/table'+ id, data);
   }
 
-  deleteOne(id: string): Observable<any>{
-    return this.http.delete<any>('http://localhost:3000/' + id, {observe: 'response'});
-  }
+
 
 }
 

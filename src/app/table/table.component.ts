@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {Appointment} from "../shared/appointment";
 import {AuthService} from "../shared/auth.service";
+//import {MatTableDataSource} from "@angular/material/table";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-table',
@@ -9,16 +11,23 @@ import {AuthService} from "../shared/auth.service";
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  id: string = '';
   appointment!: Appointment[];
+  //data: any = [];
+  //dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   deleted = false;
 
-  displayedColumns = ['termin', 'datum'];
+  //displayedColumns = ['termin', 'datum'];
 
   // constructor( private router: Router, private auth: AuthService) {  }
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.readAll();
+  }
+
+  readAll(): void {
     this.auth.getAllAppointment().subscribe(
       {
         next: (response) => {
@@ -30,9 +39,17 @@ export class TableComponent implements OnInit {
         complete: () => console.log('getAll() completed')
       })
   }
-}
-  /*
+/*
+    removeCart(index: number) {
+      this.data.splice(index, 1);
+      //this.updateAppointment();
+   }
   delete(id: string): void {
+    console.log("id :", id);
+  }
+*/
+
+  deleteOne(id: string): void {
     this.auth.deleteOne(id).subscribe(
       {
         next: (response: any) => {
@@ -59,4 +76,3 @@ export class TableComponent implements OnInit {
   }
 }
 
-   */
