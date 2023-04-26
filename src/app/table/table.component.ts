@@ -13,15 +13,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class TableComponent implements OnInit {
   id: string = '';
   appointment!: Appointment[];
-  //data: any = [];
-  //dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   deleted = false;
-
-  //displayedColumns = ['termin', 'datum'];
-
-  // constructor( private router: Router, private auth: AuthService) {  }
-  constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {
-  }
+  constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.readAll();
@@ -39,17 +32,8 @@ export class TableComponent implements OnInit {
         complete: () => console.log('getAll() completed')
       })
   }
-/*
-    removeCart(index: number) {
-      this.data.splice(index, 1);
-      //this.updateAppointment();
-   }
-  delete(id: string): void {
-    console.log("id :", id);
-  }
-*/
 
-  deleteOne(id: string): void {
+  delete(id: string): void {
     this.auth.deleteOne(id).subscribe(
       {
         next: (response: any) => {

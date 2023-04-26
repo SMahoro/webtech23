@@ -22,7 +22,7 @@
           <td>
             <!--<a [href]="'mailto:' + appointment.username"><span class="bi bi-envelope px-5"></span></a> -->
             <a [routerLink]="['/table', appointment._id]"> <span class=" bi bi-pencil-square px-5 "></span></a>
-            <button class="btn btn-danger"(click) = "deleteOne(appointment._id)" class=" bi bi-trash px-5 " > </button>
+            <button class="btn btn-danger"(click) = "delete(appointment._id)" class=" bi bi-trash px-5 " > </button>
           </td>
           <td>
             <div *ngIf="deleted" class=" container mt-3 ">
