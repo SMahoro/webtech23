@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../shared/auth.service";
-import { ActivatedRoute} from "@angular/router";
+import { ActivatedRoute, Router} from "@angular/router";
 import {Appointment} from "../shared/appointment";
 import {FormControl, FormGroup} from "@angular/forms";
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class CreateComponent implements OnInit {
     termin : new FormControl<string>(''),
     datum: new FormControl<string>(''),
   });
-  constructor(private auth: AuthService, private route: ActivatedRoute) {}
+  constructor(private auth: AuthService, private route: ActivatedRoute,  private location: Location, private router: Router) {}
 
   ngOnInit(): void {
     this.id= this.route.snapshot.paramMap.get('id') || '';
@@ -43,11 +44,27 @@ export class CreateComponent implements OnInit {
   }
 
   update(): void {
+    const values = this.createForm.value;
+    this.appointment.termin= values.termin!;
+    this.appointment.datum= values.datum!;
+    this.auth.update(this.id, this.appointment)
+      .subscribe({
+          next: (response) => {
+            console.log(response);
+            console.log(response.id);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+          complete: () => console.log('update() completed')
+        }
+      );
+    this.router.navigateByUrl('/table');
 
   }
 
   cancel(): void {
-
+    this.location.back();
   }
 
 

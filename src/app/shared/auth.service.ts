@@ -91,7 +91,7 @@ export class AuthService{
   }
 
   update(id: string, data: Appointment): Observable<Appointment> {
-    return this.http.patch<Appointment>('http://localhost:3000/table'+ id, data);
+    return this.http.patch<Appointment>('http://localhost:3000/table/'+ id, data);
   }
 
 
