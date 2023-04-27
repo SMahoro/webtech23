@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Appointment} from "../shared/appointment";
 import {AuthService} from "../shared/auth.service";
-//import {MatTableDataSource} from "@angular/material/table";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Router} from "@angular/router";
 
 
 @Component({
@@ -14,7 +13,8 @@ export class TableComponent implements OnInit {
   id: string = '';
   appointment!: Appointment[];
   deleted = false;
-  constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {}
+
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.readAll();

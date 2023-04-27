@@ -14,7 +14,7 @@ export class AuthService{
 
   userChange: Subject<User> = new Subject<User>();
   loggedIn = false;
-  delete= false;
+  //delete= false;
   loggedInChange: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
@@ -83,7 +83,7 @@ export class AuthService{
   }
 
   deleteOne(id: string): Observable<any>{
-    return this.http.delete<any>('http://localhost:3000/table' + id, {observe: 'response'});
+    return this.http.delete<any>('http://localhost:3000/table/'+ id, {observe: 'response'});
   }
 
   getOne(id: string): Observable<Appointment>{
@@ -94,9 +94,6 @@ export class AuthService{
     return this.http.patch<Appointment>('http://localhost:3000/table'+ id, data);
   }
 
-  deleted(): boolean {
-    return this.delete;
-  }
 
 
 }

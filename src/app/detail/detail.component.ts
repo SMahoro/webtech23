@@ -23,7 +23,7 @@ export class DetailComponent {
   onsubmit() {
     const values = this.detailForm.value;
     this.appointment= {
-      _id: values._id!,
+      id: values.id!,
       datum: values.datum!,
       termin: values.termin!,
     };
