@@ -16,7 +16,7 @@
           <td>{{ appointment.datum}}</td>
           <td>{{ appointment.termin}}</td>
           <td>
-            <a [routerLink]="['/appointment', appointment.id]"> <span class=" bi bi-pencil-square px-5 "></span></a>
+            <a [routerLink]="['/table', appointment.id]"> <span class=" bi bi-pencil-square px-5 "></span></a>
             <span (click)="delete(appointment.id)" class=" bi bi-trash px-5 "></span>
           </td>
         </tr>

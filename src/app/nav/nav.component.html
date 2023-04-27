@@ -13,7 +13,7 @@
               <a class="nav-link" [routerLink]="'/signup'">Registrieren</a>
             </div>
         </div>
-
+      <span>Nutzerinnenverwaltung</span>
       <button *ngIf="!isLoggedIn" mat-icon-button class="right" (click)="callLogin()">
         <mat-icon>login</mat-icon>
       </button>
@@ -23,7 +23,6 @@
           <mat-icon>logout</mat-icon>
         </button>
       </div>
-
     </div>
   </nav>
 

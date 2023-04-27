@@ -25,6 +25,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTableModule} from "@angular/material/table";
+import { UserlisComponent } from './userlis/userlis.component';
+import { UserlistComponent } from './userlist/userlist.component';
 
 
 
@@ -42,6 +44,8 @@ import {MatTableModule} from "@angular/material/table";
     SignupComponent,
     ConfirmComponent,
     CalendarComponent,
+    UserlisComponent,
+    UserlistComponent,
 
   ],
   imports: [

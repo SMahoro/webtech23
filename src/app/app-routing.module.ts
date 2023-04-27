@@ -23,23 +23,16 @@ const routes: Routes = [
 
   {path: "login", component:LoginComponent},
 
-  {
-    path: "table",
-    component: TableComponent
-  },
+  {path: "table", component: TableComponent},
 
-  {
-    path: "calendar",
-    component: CalendarComponent
-  },
-  {
-    path: "appointment",
-    component: DetailComponent
-  },
-  {
-    path: "appointment/:id",
-    component: CreateComponent
-  },
+  {path: "table/:id", component: CreateComponent},
+
+  {path: "calendar", component: CalendarComponent},
+
+  {path: "appointment", component: DetailComponent},
+
+  {path: "appointment/:id", component: CreateComponent},
+
 
   {path: '**', redirectTo: '/home'}];
 

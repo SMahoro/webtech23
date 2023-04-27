@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, UrlTree} from '@angular/router';
+import { Router,  ActivatedRouteSnapshot, RouterStateSnapshot,UrlTree, CanActivate} from '@angular/router';
 import {AuthService} from "./auth.service";
 
 @Injectable({
@@ -9,7 +9,8 @@ import {AuthService} from "./auth.service";
 export class AuthguardGuard  {
   constructor( private auth: AuthService, private router: Router) {}
 
-  canActivate(): boolean | UrlTree {
+  canActivate(route: ActivatedRouteSnapshot,
+              state: RouterStateSnapshot): boolean | UrlTree {
     return this.auth.isLoggedin()
       ? true
       : this.router.parseUrl('/login');

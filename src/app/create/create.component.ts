@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../shared/auth.service";
 import { ActivatedRoute, Router} from "@angular/router";
 import {Appointment} from "../shared/appointment";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { Location } from '@angular/common';
 
 
@@ -16,8 +16,8 @@ export class CreateComponent implements OnInit {
   appointment!: Appointment;
   id: string = '';
   createForm = new FormGroup({
-    termin : new FormControl<string>(''),
-    datum: new FormControl<string>(''),
+    termin : new FormControl('', [Validators.required]),
+    datum: new FormControl('', [Validators.required]),
   });
   constructor(private auth: AuthService, private route: ActivatedRoute,  private location: Location, private router: Router) {}
 
@@ -31,7 +31,7 @@ export class CreateComponent implements OnInit {
       {
         next: (response: Appointment) => {
           this.appointment = response;
-          console.log(this.appointment);
+          console.log('appointment',this.appointment);
           this.createForm.patchValue({
             termin: this.appointment?.termin,
             datum: this.appointment?.datum,

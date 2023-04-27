@@ -65,6 +65,8 @@ router.post('/login',  async (req, res) =>{
 } );
 
 
+
+
 // post one = CREATE appointment
 router.post('/appointment', async(req, res) => {
   const newAppointment = new appointment({
@@ -72,7 +74,6 @@ router.post('/appointment', async(req, res) => {
     termin: req.body.termin,
   })
   await newAppointment.save();
-  //res.status(404);
   res.send(newAppointment);
 });
 
@@ -101,9 +102,9 @@ router.delete('/:id', async(req, res) => {
 // Update an appointment
 router.get('/table/:id', async(req, res) => {
     try {
-        const oneAppointment = await appointment.findOne({ id: req.params.id });
+        const Appointment = await appointment.find({ id: req.params.id });
         console.log(req.params);
-        res.send(appointment[0]);
+        res.send(Appointment[0]);
         } catch {
         res.status(404);
         res.send({
@@ -113,7 +114,7 @@ router.get('/table/:id', async(req, res) => {
 })
 
 
-// update one member = UPDATE
+// update appointment
 router.patch('/:id', async(req, res) => {
     try {
         const updateAppointment = await appointment.findOne({ id: req.params.id })
@@ -132,6 +133,73 @@ router.patch('/:id', async(req, res) => {
         res.status(404)
         res.send({ error: "Dieser Termin existiert nicht!" })
     }
+});
+
+
+// update one user
+router.put('/:id', async(req, res) => {
+  try {
+    const User = await user.findOne({ id: req.params.id })
+    if(user && req.body.password) {
+      bcrypt.compare(req.body.password, User.password)
+        .then( async(result) =>
+        {
+          if(result) {
+
+            if (req.body.newPassword) {
+              bcrypt.hash(req.body.newPassword, 10)
+                .then(
+                  async(hash) => {
+                    console.log('new hash', hash)
+                    await User.updateOne({ id: req.params.id }, { password: hash });
+                  }
+                );
+            }
+
+            if (req.body.username) {
+              const nameExists = await user.findOne({ username: req.body.username })
+              if(!nameExists) await user.updateOne({ id: req.params.id }, { username: req.body.username });
+              else res.status(400).json({ error: 'username exists' });
+            }
+            res.status(200).send()
+
+          } else {
+            res.status(204).send(); // wrong password
+          }
+
+        })
+    } else {
+      res.status(204).send(); // wrong _id or no password
+    }
+  } catch {
+    res.status(404)
+    res.send({ error: "User does not exist!" })
+  }
+});
+
+
+// get one user via username
+router.get('/:name', async(req, res) => {
+  const User = await user.findOne({ username: req.params.name });
+  if(User) {
+    res.send(User);
+  } else {
+    res.status(404);
+    res.send({
+      error: "User does not exist!"
+    });
+  }
+})
+
+// delete one user via id
+router.delete('/:id', async(req, res) => {
+  try {
+    await user.deleteOne({ id: req.params.id })
+    res.status(204).send()
+  } catch {
+    res.status(404)
+    res.send({ error: "User does not exist!" })
+  }
 });
 
 module.exports = router;

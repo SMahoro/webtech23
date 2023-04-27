@@ -10,11 +10,8 @@ import {Appointment} from "./appointment";
 
 export class AuthService{
   user: User = {username: '', password: ''};
-  //appointment: Appointment = { datum:'', termin: ''};
-
   userChange: Subject<User> = new Subject<User>();
   loggedIn = false;
-  //delete= false;
   loggedInChange: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
@@ -36,12 +33,12 @@ export class AuthService{
   }
 
   signupUser (user:User): Observable<any>{
-    return this.http.post('http://localhost:3000/signup', user);
+    return this.http.post('http://localhost:3000/users/signup', user);
   }
 
   loginUser(username: String, password: String) //: Observable<any>
   {
-    return this.http.post('http://localhost:3000/login',
+    return this.http.post('http://localhost:3000/users/login',
       {username:username, password:password}, {observe: 'response'});
   }
 
@@ -68,6 +65,7 @@ export class AuthService{
     this.user = {username: '', password: ''};
     this.userChange.next(this.user);
   }
+
 
   getUser(): User | null {
     return this.user;

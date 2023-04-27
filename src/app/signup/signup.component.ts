@@ -37,7 +37,6 @@ export class SignupComponent{
       username: values.username!,
       password: values.password!,
     };
-    //console.log(this.user)
     this.auth.signupUser(this.user).subscribe({
       next:(response) => {
        console.log('response', response)
