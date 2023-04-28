@@ -42,7 +42,7 @@ router.post('/signup', async(req, res) => {
 
 //get all users
 router.get('/', async (req, res) => {
-  const allUsers= await User.find();
+  const allUsers= await user.find();
   console.log(allUsers);
   res.send(allUsers);
 })
@@ -58,31 +58,33 @@ router.post('/login',  async (req, res) =>{
         res.status(204).send(); // incorrect password
       }
     })
-      .catch((err) => res.status(400).json({ error: 'Something went wrong'}))
+      //.catch((err) => res.status(400).json({ error: 'Something went wrong'}))
   } else {
     res.status(400).json({ error: ' User does not exist'});
   }
 } );
 
 
+// post one = CREATE appointment
+router.post('/appointment', async(req, res) => {
+  const newAppointment = new appointment({
+    datum: req.body.datum,
+    termin: req.body.termin,
+  })
+  await newAppointment.save();
+  //res.status(404);
+  res.send(newAppointment);
+});
 
 
 // get all = READ alle
-router.get('/', async(req, res) => {
+router.get('/table', async(req, res) => {
     const allAppointments = await appointment.find();
+  console.log(allAppointments);
     res.send(allAppointments);
 });
 
-// post one = CREATE
-router.post('/', async(req, res) => {
-    const newAppointment = new appointment({
-        datum: req.body.datum,
-        termin: req.body.termin,
-    })
-    await newAppointment.save();
-    res.status(404);
-    res.send(newAppointment);
-});
+
 
 // get one = READ
 router.get('/:id', async(req, res) => {

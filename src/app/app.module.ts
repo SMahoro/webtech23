@@ -24,6 +24,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatIconModule,
     MatDialogModule,
     CustomMaterialModule,
+    MatTableModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BackendService } from '../../../shared/backend.service';
-import { Appointment } from '../../../shared/appointment';
+import {Appointment} from "../shared/appointment";
+import {AuthService} from "../shared/auth.service";
 
 @Component({
   selector: 'app-table',
@@ -12,28 +12,28 @@ export class TableComponent implements OnInit {
   appointment!: Appointment[];
   deleted = false;
 
-  constructor(private bs: BackendService, private router: Router) {  }
+  displayedColumns = ['termin', 'datum'];
 
-
-  ngOnInit(): void {
-    this.readAll();
+  // constructor( private router: Router, private auth: AuthService) {  }
+  constructor(private auth: AuthService) {
   }
 
-  readAll(): void {
-    this.bs.getAll().subscribe(
+  ngOnInit(): void {
+    this.auth.getAllAppointment().subscribe(
       {
         next: (response) => {
-              this.appointment = response;
-              console.log(this.appointment);
-              return this.appointment;
-            },
+          this.appointment = response;
+          console.log('this.appointment', this.appointment);
+          //return this.appointment;
+        },
         error: (err) => console.log(err),
         complete: () => console.log('getAll() completed')
       })
   }
-
+}
+  /*
   delete(id: string): void {
-    this.bs.deleteOne(id).subscribe(
+    this.auth.deleteOne(id).subscribe(
       {
         next: (response: any) => {
           console.log('response : ', response);
@@ -58,3 +58,5 @@ export class TableComponent implements OnInit {
     this.router.navigateByUrl('/table');
   }
 }
+
+   */

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    datum: {type:String, required:true},
+    datum: {type:Date, required:true},
     termin: {type:String, required:true}
 });
 
