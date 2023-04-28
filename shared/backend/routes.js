@@ -77,21 +77,33 @@ router.post('/appointment', async(req, res) => {
 });
 
 
-// get all = READ alle
+// get all appointments = READ alle
 router.get('/table', async(req, res) => {
     const allAppointments = await appointment.find();
   console.log(allAppointments);
     res.send(allAppointments);
 });
 
+// delete one appointment via id DELETE
+router.delete('/:id', async(req, res) => {
+  try {
+    await appointment.deleteOne({ id: req.params.id })
+    res.status(204).send()
+  } catch {
+    res.status(404)
+    res.send({ error: "Dieser Termin existiert nicht!" })
+  }
+});
 
 
-// get one = READ
-router.get('/:id', async(req, res) => {
+
+
+// Update an appointment
+router.get('/table/:id', async(req, res) => {
     try {
-        const oneAppointment = await appointment.findOne({ _id: req.params.id });
+        const oneAppointment = await appointment.findOne({ id: req.params.id });
         console.log(req.params);
-        res.send(member[0]);
+        res.send(appointment[0]);
         } catch {
         res.status(404);
         res.send({
@@ -104,7 +116,7 @@ router.get('/:id', async(req, res) => {
 // update one member = UPDATE
 router.patch('/:id', async(req, res) => {
     try {
-        const updateAppointment = await appointment.findOne({ _id: req.params.id })
+        const updateAppointment = await appointment.findOne({ id: req.params.id })
 
         if (req.body.datum) {
             updateAppointment.datum = req.body.datum
@@ -114,19 +126,8 @@ router.patch('/:id', async(req, res) => {
             updateAppointment.termin = req.body.termin
         }
 
-        await appointment.updateOne({ _id: req.params.id }, updateAppointment);
+        await appointment.updateOne({ id: req.params.id }, updateAppointment);
         res.send(updateAppointment)
-    } catch {
-        res.status(404)
-        res.send({ error: "Dieser Termin existiert nicht!" })
-    }
-});
-
-// delete one member via id DELETE
-router.delete('/:id', async(req, res) => {
-    try {
-        await appointment.deleteOne({ _id: req.params.id })
-        res.status(204).send()
     } catch {
         res.status(404)
         res.send({ error: "Dieser Termin existiert nicht!" })

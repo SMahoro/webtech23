@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {Appointment} from "../shared/appointment";
 import {AuthService} from "../shared/auth.service";
+import { Router} from "@angular/router";
+
+
 
 @Component({
   selector: 'app-table',
@@ -9,16 +11,17 @@ import {AuthService} from "../shared/auth.service";
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  id: string = '';
   appointment!: Appointment[];
   deleted = false;
 
-  displayedColumns = ['termin', 'datum'];
-
-  // constructor( private router: Router, private auth: AuthService) {  }
-  constructor(private auth: AuthService) {
-  }
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    this.readAll();
+  }
+
+  readAll(): void {
     this.auth.getAllAppointment().subscribe(
       {
         next: (response) => {
@@ -30,8 +33,7 @@ export class TableComponent implements OnInit {
         complete: () => console.log('getAll() completed')
       })
   }
-}
-  /*
+
   delete(id: string): void {
     this.auth.deleteOne(id).subscribe(
       {
@@ -59,4 +61,3 @@ export class TableComponent implements OnInit {
   }
 }
 
-   */

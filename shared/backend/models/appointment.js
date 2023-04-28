@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    datum: {type:Date, required:true},
-    termin: {type:String, required:true}
+    datum: {type:Date},
+    termin: {type:String}
 });
 
 module.exports = mongoose.model('Appointment', schema);
