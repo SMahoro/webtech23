@@ -11,13 +11,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let appointment of appointment; let i=index;">
+        <tr *ngFor="let appointments of appointment; let i=index;">
           <td>{{i+1}}</td>
-          <td>{{ appointment.datum}}</td>
-          <td>{{ appointment.termin}}</td>
+          <td>{{ appointments.datum}}</td>
+          <td>{{ appointments.termin}}</td>
           <td>
-            <a [routerLink]="['/appointment', appointment.id]"> <span class=" bi bi-pencil-square px-5 "></span></a>
-            <span (click)="delete(appointment.id)" class=" bi bi-trash px-5 "></span>
+            <a [routerLink]="['/appointment', appointments._id]"> <span class=" bi bi-pencil-square px-5 "></span></a>
+            <span (click)="delete(appointments._id)" class=" bi bi-trash px-5 "></span>
           </td>
         </tr>
         </tbody>

@@ -31,12 +31,12 @@ export class LoginComponent{
         next: (response) => {
           console.log('login response', response);
           if (response.status == 201) {
-            this.auth.getOneUser(username!).subscribe(
-              (response) => {
-                this.auth.login(response);
-                this.router.navigate(['/home'])
-              }
-            )
+           // this.auth.getOneUser(username!).subscribe(
+             // (response) => {
+                //this.auth.login(response);
+                this.router.navigate(['/table'])
+             // }
+           // )
           } else {
             console.log('kein Login - Nutzername und/oder Passwort stimmen nicht')
           }

@@ -1,5 +1,5 @@
 export interface Appointment {
-  id: string;
+  _id: string;
   termin: string;
   datum: string;
 }

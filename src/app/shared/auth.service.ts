@@ -10,11 +10,8 @@ import {Appointment} from "./appointment";
 
 export class AuthService{
   user: User = {username: '', password: ''};
-  //appointment: Appointment = { datum:'', termin: ''};
-
   userChange: Subject<User> = new Subject<User>();
   loggedIn = false;
-  //delete= false;
   loggedInChange: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
@@ -32,7 +29,7 @@ export class AuthService{
   }
 
   getOneUser(username: string): Observable<User>{
-    return this.http.get<User>('http://localhost:3000/users/' + username);
+    return this.http.get<User>('http://localhost:3000/' + username);
   }
 
   signupUser (user:User): Observable<any>{
@@ -87,7 +84,7 @@ export class AuthService{
   }
 
   getOne(id: string): Observable<Appointment>{
-    return this.http.get<Appointment>('http://localhost:3000/table' + id);
+    return this.http.get<Appointment>('http://localhost:3000/table/' + id);
   }
 
   update(id: string, data: Appointment): Observable<Appointment> {

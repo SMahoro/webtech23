@@ -51,7 +51,7 @@ export class CreateComponent implements OnInit {
       .subscribe({
           next: (response) => {
             console.log(response);
-            console.log(response.id);
+            console.log(response._id);
           },
           error: (err) => {
             console.log(err);
